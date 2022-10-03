@@ -1,0 +1,33 @@
+.container_presentation {
+display: flex;
+margin-top: 2rem;
+justify-content: center;
+}
+
+.title {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.carte {
+    width: 100%;
+    margin-top: 6rem;
+    margin-left: -2rem;
+    text-align: center;
+    @media screen and (max-width: 500px) {
+        margin-left: 0;
+        margin-top: 4rem;
+    }
+}
+
+.infos_club {
+    margin-top: 2rem;
+}
+
+.mb-5 {
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+        margin-bottom: 3rem!important;
+        margin-top: -8rem;
+    }
+}

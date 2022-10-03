@@ -2,7 +2,16 @@
 @use 'vars';
 
 body {
-  font-family: sans-serif;
+  color: #57595a!important;
+  font-family: 'ABeeZee', sans-serif!important;
+  // font-family: 'Montserrat', sans-serif;
+      font-size: 13pt!important;
+    font-weight: 400!important;
+    line-height: 1.65!important;
+}
+
+.swiper-scrollbar {
+  display: none!important;
 }
 
 /* 

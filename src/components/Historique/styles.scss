@@ -1,0 +1,28 @@
+.mar {
+    margin: 0 25rem!important;
+    @media screen and (max-width: 500px) {
+        margin: 0!important;
+    }
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+        // marg/in-top: 7rem;
+        margin: 1rem!important;
+    }
+}
+
+.nbr {
+    border-right: none;
+}
+.nbl {
+    border-left: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table-wrapper {
+    @media screen and (max-width: 500px) {
+        margin-top: 7rem;
+    }
+}

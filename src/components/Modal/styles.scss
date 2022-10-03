@@ -1,0 +1,342 @@
+
+.topbar {
+    position: fixed;
+    top: 0;
+    width: 36vw;
+    z-index: 9999;
+    height: 89vh;
+    margin: 5rem 41rem;
+    border: 3px dashed #f6d300;
+    -webkit-box-shadow: 0 1px 0 5px rgb(0 0 0 / 13%);
+    box-shadow: 0 1px 0 5pxrgba(0,0,0,.13);
+    border-radius: 30px;
+    background-color: #fff;
+
+    &_title {
+        width: 100%;
+        margin: 0 auto;
+        /* margin-left: -4rem; */
+        color: #6c9f7f;
+        font-size: 1rem;
+        // background-color: #f6d300;
+    }
+
+    @media screen and (width: 1024px) and (height: 1366px) {
+        width: 75%;
+        margin: 18rem 8rem;
+      }
+    @media screen and (min-width: 1280px) and (max-width: 1367px) and (orientation: landscape) {
+        // background-image: transparent;
+        margin: 5rem 29rem;
+        height: 76vh;
+        width: 35vw;
+    }
+
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        margin: 6rem 0.6rem;
+        height: 75%;
+        width: 85%;
+        .contact_form {
+            width: 95%;
+            position: absolute;
+            margin-top: -13rem;
+        }
+        .texte {
+            font-size: 1rem;
+            margin-top: 0.6rem;
+        }
+    }
+    
+
+    @media screen and (width: 540px) and (height: 720px) and (orientation: portrait) {
+        margin: 8rem 3rem;
+        width: 85%;
+        height: 68vh;
+        .contact_title {
+            margin-top: 1rem;
+        }
+        .topbar_container2 {
+            margin-left: 4rem;
+        }
+    }
+    @media screen and (width: 720px) and (height: 540px) and (orientation: landscape) {
+        margin: 3rem 3rem;
+        width: 95%;
+        height: 68vh;
+        .contact_title {
+            margin-top: 1rem;
+        }
+        .topbar_container2 {
+            margin-left: 4rem;
+        }
+    }
+
+
+
+
+    @media screen and (min-width: 520px) and (max-width: 539px) and (orientation: portrait) {
+        margin: 10rem 1rem;
+        width: 94%;
+        height: 60.4%;
+        .contact_form {
+            height: 20rem;
+            width: 95%;
+            position: absolute;
+            margin-top: -1rem;
+        }
+        .texte {
+            font-size: 1rem;
+            margin-top: 0.6rem;
+        }
+    }
+    @media screen and (max-height: 412px) and (max-width: 750px) and (orientation: landscape) {
+        margin: 0rem 0.6rem;
+        width: 10%;
+        height: 60.4%;
+        // .contact_form {
+        //     height: 20rem;
+        //     width: 95%;
+        //     position: absolute;
+        //     margin-top: -1rem;
+        // }
+        // .texte {
+        //     font-size: 1rem;
+        //     margin-top: 0.6rem;
+        // }
+    }
+
+   
+    @media screen and (max-width: 750px) and (orientation: landscape) {
+            position: fixed;
+            top: 0px;
+            width: 90vw;
+            z-index: 9999;
+            height: 50vh;
+            /* height: 50vh; */
+            margin: 0.5rem 6rem;
+            /* border: 1px dashed #000; */
+            /* background-color: #fff; */
+            /* -webkit-box-shadow: 0 1px 0 5px rgb(0 0 0 / 13%); */
+            /* box-shadow: 0 1px 0 5px rgb(0 0 0 / 13%); */
+            /* border-radius: 30px; */
+            backdrop-filter: blur(15px); 
+            /* background-color: hsla(0,0%,71.4%,.2); */
+            .contact_form {
+                width: 80%;
+                height: 80%;
+                font-size: 1rem;
+                margin: 1.4rem auto;
+            }
+            .label_form {
+                margin: 0.5rem;
+            }
+            .texte {
+                font-size: 1rem;
+            }        
+    }
+        @media screen and (width: 768px) and (height: 1024px) and (orientation: portrait) {
+            margin: 12rem 10rem;
+            width: 60%;
+            .button_menu {
+                margin-left: -35rem;
+            }
+        }
+        @media screen and (width: 1024px) and (height: 768px) and (orientation: landscape) {
+            margin: 9rem 14rem;
+            width: 60%;
+            height: 66vh;
+            .button_menu {
+                margin-left: -35rem;
+            }
+        }
+        @media screen and (width: 1024px) and (height: 600px) and (orientation: landscape) {
+            margin: 4rem 14rem;
+            width: 60%;
+            height: 80vh;
+            .button_menu {
+                margin-left: -35rem;
+            }
+        }
+
+    @media screen and (max-width: 720px) and (orientation: landscape) {
+        left: 0;
+        margin: 2rem 12rem;
+        width: 60%;
+        height: 74vh;
+    }
+    @media screen and (min-width:1025px) and (max-width: 1280px) and (orientation: landscape) {
+        left: 0;
+        margin: 8rem 21rem;
+        width: 50%;
+        height: 65vh;
+    }
+
+    &_container {
+        display: flex;
+        width: 100%;
+    }
+    &_container1 {
+        display: flex;
+        width: 100%;
+    }
+    &_container2 {
+        @media screen and (min-width: 1280px) and (max-width: 1367px) and (orientation: landscape) {
+            // background-image: transparent;
+            font-size: 2rem;
+            padding: 1rem;
+            // margin-bottom: -12rem;
+            margin-left: 3rem;
+        }
+        @media screen and (max-width: 500px) {
+
+            font-size: 1.5rem;
+    margin-left: 1rem;
+    padding: 1rem;
+        }
+
+        font-size: 3rem;
+        // margin-bottom: -12rem;
+        display: flex;
+        width: 100%;
+        margin-left: 4rem;
+        margin-top: 1rem;
+    }
+    &_container3 {
+        padding: 1rem;
+        display: flex;
+        width: 50%;
+        opacity: 1;
+        color: black;
+    }
+    &_name {
+        margin-top: 0.4rem;
+        font-size: 0.8rem;
+        margin-left: 1rem;
+    }
+    &_tel {
+        margin-top: 0.4rem;
+        font-size: 0.8rem;
+        margin-left: 1rem;
+    }
+    &_button {
+        position: absolute;
+        font-size: 1rem;
+        top: 1rem;
+        right: 1rem;
+        color: black;
+        // background-color: orange;
+        border: 0;
+        z-index: 6;
+      
+        &:after {
+            position: absolute;
+    top: -46px;
+    bottom: -16px;
+    left: -8px;
+    right: 0;
+    content: "❌";
+    font-size: 20px;
+    color: #fff;
+    line-height: 100px;
+    text-align: center;
+        }
+    }
+    &_form {
+        margin-top: 1rem;
+        // margin-top: -9rem;
+    }
+}
+
+.fade-out {
+	animation: fadeOut 3000ms;
+  	opacity: 0;
+
+}
+
+@keyframes fadeOut {
+  from {
+  	display: 1;
+  }
+  to {
+ 	opacity: 0;
+
+  }
+}
+
+.myButtonSend {
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #777;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 1px 16px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    /* margin-left: 4rem; */
+    text-transform: uppercase;
+    font-family: ABeeZee,sans-serif!important;
+}
+.myButtonUpload {
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #777;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 1px 16px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    /* margin-left: 4rem; */
+    text-transform: uppercase;
+    font-family: ABeeZee,sans-serif!important;
+}
+
+.fileSend {
+    display: flex;
+}
+
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+  }
+
+  .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .inputfile-1 + label {
+    color: #f1e5e6;
+    background-color: #d3394c;
+}
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}

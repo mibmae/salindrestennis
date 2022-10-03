@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+import Tennis from './log';
 
 export default combineReducers({
-  counter,
+  Tennis,
 });

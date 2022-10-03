@@ -1,0 +1,15 @@
+.cotisations {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    @media screen and (max-width: 500px) {
+    margin-top: 4rem;
+    }
+
+}
+
+.ancv {
+    max-width: 600px;
+    width: 80%;
+}
+

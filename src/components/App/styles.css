@@ -1,9 +1,17 @@
 .app {
-  width: 500px;
+  /* width: 500px;
   margin: 1em auto;
   text-align: center;
+} */
 }
 
-.app img {
+/* .app img {
   max-width: 150px;
+} */
+
+a {
+  text-decoration: none!important;
+  color: inherit!important;
 }
+
+@import "~bootstrap/scss/bootstrap";

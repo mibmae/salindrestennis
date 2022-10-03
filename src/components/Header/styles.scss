@@ -1,0 +1,357 @@
+.header {
+    background-color: white;
+    position: fixed;
+    height: 4.4rem;
+    top: 0;
+    width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 0;
+    z-index: 200;
+    transition: all 0.3s linear;
+    overflow: visible;
+    border-bottom: 0.4rem solid #F56A6A;
+    
+    // border-bottom: 0.4rem solid #0072ac;
+    &_container {
+        display: flex;
+        width: 100%;
+        margin: 0 0;
+    }
+    &_logo {
+        position: absolute;
+        margin-left: 23rem;
+        width: 150px;
+        @media screen and (max-width: 500px) {
+            margin: 0;
+            width: 86px;
+        }
+        @media screen and (max-width: 700px) and (orientation: landscape) {
+          margin-left: -1rem;
+        }
+        @media only screen and (-webkit-min-device-pixel-ratio: 3.5) {
+          margin-left: -1rem;
+        }
+    }
+
+}
+
+.myButton {
+	// box-shadow:inset 0px 1px 0px 0px #ffffff;
+	// background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+	// background-color:#ededed;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#777777;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:1px 16px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+    margin-left: 4rem;
+    text-transform: uppercase;
+    font-family: ABeeZee,sans-serif!important;
+    @media screen and (max-width: 500px) {
+      margin-top: 2rem;
+    width: 100%;
+    margin-left: -1rem;
+  }
+  @media screen and (max-width: 700px) and (orientation: landscape) {
+    margin-top: 2rem;
+    width: 100%;
+    margin-left: 0.2rem;
+    font-size: 10px;
+    
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3.5) {
+  margin-top: 0rem;
+    width: 100%;
+    margin-left: 3rem;
+    font-size: 10px;
+}
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+	background-color:#dfdfdf;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+// .logo {
+//     margin: auto 9rem;
+// }
+
+.menu {
+    display: flex;
+    position: absolute;
+    width: 49%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin-top: 1rem;
+    margin-left: 34rem;
+    @media screen and (max-width: 500px) {
+        display: none;
+    }
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+      // marg/in-top: 7rem;
+  //  display: none;
+  // margin-left: 4rem;
+  // margin-top: -1.2rem;
+  margin: -1rem 11rem;
+  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 3.5) {
+    margin: 1rem 11rem;
+  }
+}
+.menu_items {
+    @media screen and (max-width: 500px) {
+        display: none;
+    }
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: -0.5rem;
+    @media only screen and (-webkit-min-device-pixel-ratio: 3.5) {
+      margin: 1rem 11rem;
+    }
+
+}
+
+.sous_menu_item {
+    display: flex;
+    position: absolute;
+    background-color: white;
+    top: 2rem;
+}
+
+.sous_menu_container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 2rem;
+    height: 2rem;
+    width: 20%;
+}
+
+.menu_mob {
+    // height: 100vh;
+    width: 100%;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+      margin-top: 4rem;
+  }
+  @media screen and (max-width: 700px) and (orientation: landscape) {
+    margin-top: 2rem;
+}
+
+}
+
+
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 15px;
+    top: 15px;
+    color: red;
+  }
+  
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: #f3d600;
+  }
+  
+  /* Color/shape of burger icon bars on hover*/
+  .bm-burger-bars-hover {
+    background: #f3d600;
+  }
+  
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+  
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: #bdc3c7;
+  }
+  
+  /*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+  .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+  }
+  
+  /* General sidebar styles */
+  .bm-menu {
+    background: #373a47;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+  }
+  
+  /* Morph shape necessary with bubble or elastic */
+  .bm-morph-shape {
+    fill: #373a47;
+  }
+  
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #b8b7ad;
+    padding: 0.8em;
+  }
+  
+  /* Individual item */
+  .bm-item {
+    display: inline-block;
+  }
+  
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  
+.menu-btn {
+    position: absolute;
+    display: flex;
+    right: -1rem;
+    top: 0rem;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 100%;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    /* border: 3px solid #fff; */
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        margin-top: 0rem;
+        display: flex;
+    }
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+      display: none;
+  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 3.5) {
+    display: none;
+  }
+  }
+  .menu-btn__burger {
+    //   margin-left: -1.6rem;
+    width: 37px;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        width: 37px;
+    }
+    height: 6px;
+    // background: #f6d300;
+    background: red;
+    border-radius: 5px;
+    // box-shadow: 0 2px 5px rgba(255,101,47,.2);
+    transition: all .5s ease-in-out;
+  }
+  .menu-btn__burger::before {
+         //2 barres haut et bas
+    content: '';
+    position: absolute;
+    width: 37px;
+    height: 6px;
+    // background: black;
+    background: #f6d300;
+    margin-top: 0.3rem;
+    border-radius: 5px;
+    // box-shadow: 0 2px 5px #f6d300;
+    transition: all .5s ease-in-out;
+    // margin-left: -1.1rem;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        width: 37px;
+        // margin-left: -1.1rem;
+    }
+  }
+  
+  .menu-btn__burger::after {
+      //2 barres haut et bas
+    content: '';
+    margin-top: -0.3rem;
+    position: absolute;
+    width: 37px;
+    height: 6px;
+    background: #f6d300;
+    // background: black;
+    border-radius: 5px;
+    // box-shadow: 0 2px 5px #f6d300;
+    transition: all .5s ease-in-out;
+    // margin-left: -1.1rem;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        width: 37px;
+        // margin-left: -1.1rem;
+    }
+  }
+  .menu-btn__burger::before {
+    transform: translateY(-16px);
+  }
+  .menu-btn__burger::after {
+    transform: translateY(16px);
+  }
+  /* ANIMATION */
+  .menu-btn.open .menu-btn__burger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+  .menu-btn.open .menu-btn__burger::before {
+    transform: rotate(45deg) translate(28px, -35px);
+  }
+  .menu-btn.open .menu-btn__burger::after {
+    transform: rotate(-45deg) translate(28px, 35px);
+  }
+
+
+  
+
+  .szh-menu {
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+    min-width: 100%;
+    width: 100%!important;
+    }
+  }
+
+  .fond {
+    background-image: url(https://mobimg.b-cdn.net/v3/fetch/5f/5f3bc1680d5fc0d091513d8f192308a9.jpeg?w=1470&r=0.5625);
+    background-position: 68% 100%;
+  }
+
+  .swiper_container {
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+      height: 60%!important;
+    margin-top: 4rem!important;
+  }
+    
+  }
+
+  .menuMob {
+    width: 100%;
+  }
+
+  .header_logos_container {
+    display: flex;
+    position: fixed;
+    right: 3rem;
+  }
+
+  .social {
+    margin-left: 2rem;
+    &:hover {
+      color: #F56A6A;
+      cursor: pointer;
+    }
+    font-size: 1.3rem;
+  }

@@ -1,0 +1,14 @@
+.style5 {
+    color: #000000;
+    font-weight: bold;
+}
+
+.style6 {
+    font-size: large;
+}
+
+.mobtab {
+    @media screen and (max-width: 500px) {
+    font-size: x-small;
+    }
+}

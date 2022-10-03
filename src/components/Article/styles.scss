@@ -1,0 +1,65 @@
+.container_article {
+    display: flex;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    // justify-content: space-around;
+    text-align: justify;
+    align-items: center;
+    align-content: center;
+}
+
+.container_art {
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        margin-top: 3rem;
+    }
+}
+
+.article {
+    padding: 0 6em 0.1em;
+    margin: 3rem auto 3rem;
+    max-width: 64em;
+    font-family: ABeeZee,sans-serif!important;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+
+    width: 97%;
+    margin: -2rem auto;
+    height: 100%;
+    margin-bottom: 3rem;
+    padding: 0;
+    }
+    &_title {
+        font-size: large;
+        margin-top: 1rem;
+    }
+    &_date {
+        font-size: medium;
+        margin-top: -2rem;
+        margin-left: 10rem;
+    }
+    &_contenu {
+        margin-top: 5rem;
+        // border: 1px solid blue;
+    }
+}
+
+.mtp {
+    margin-top: 6rem;
+}
+
+.band {
+    // height: 100%!important;
+    // background-image: url('https://www.tcbalma.fr/cache/images/9b45c9e41bb6f21a37e9a4a7fc394516_11fc6c4d0a8c4217e60d8e3bb7c5a8fa.jpg');
+    height: 25rem;
+    background-position-x: center;
+    background-position-y: center;
+    @media screen and (max-width: 500px) {
+    background-size: cover;
+    }
+}
+
+.container_nav {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3rem;
+}
+

@@ -1,0 +1,87 @@
+// .footer {
+//     width: 100%;
+//     display: flex;
+//     // position: absolute;
+//     bottom: 0;
+//     padding: 1rem;
+//     justify-content: space-around;
+//     height: 10vh;
+//     background-color: #B7563A;
+//     &_name {
+//         text-align: center;
+//     }
+// }
+
+.footer {
+    font-size: 1rem;
+    color: #c0c0c0;
+    background-color: #161616;
+    background-image: url(https://www.tcbalma.fr/cache/styles/../../_chartes_/tcb/ressources/images/footer.jpg);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: cover;
+    background-clip: border-box;
+    position: relative;
+    height: auto;
+    width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 0;
+    z-index: 100;
+    transition: all 0.3s linear;
+}
+
+.footer_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+        flex-wrap: nowrap;
+    }
+}
+
+.contacts {
+    // position: absolute;
+    // display: inline-block;
+    width: 45%;
+    // float: left;
+    margin-top: 5rem;
+    margin-left: 20rem;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        margin-left: 2rem;
+        width: 100%;
+        margin-top: 2rem;
+    }
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+
+    width: 45%;
+    margin-top: 1rem;
+    margin-left: 12rem;
+    }
+}
+
+.map {
+    margin-top: 1rem;
+    width: 90%;
+    height: 90%;
+    margin-left: -4rem;
+    border-radius: 10px;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        margin-left: 1rem;
+        width: 90%;
+        margin-top: 1rem;
+    }
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+        height: 80%;
+    margin-top: 2rem;
+    margin-left: 0.6rem;
+
+    }
+}
+
+.gmap {
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+       width: 100%;
+
+    }
+}

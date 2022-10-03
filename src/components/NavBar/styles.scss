@@ -1,0 +1,114 @@
+.button_menu { 
+    border: 0;
+    /* border-top-right-radius: 10rem; */
+    /* margin-top: 3.7rem; */
+    /* border-bottom-right-radius: 9rem; */
+    width: 80px;
+    /* position: absolute; */
+    outline: none;
+    z-index: 2;
+    /* background-color: #fff; */
+    border-left: 0;
+    /* color: #bdb099; */
+        background-color: transparent;
+        // border: 1px solid;
+        // width: 25%;
+ 
+    }
+
+
+.link_title {
+    margin-top: 4rem;
+    font-size: 1.5em;
+}
+
+.Menu__Container-mw2r80-0 {
+    background-color: transparent;
+    top: 2rem;
+    max-width: 100%;
+    height: 80%;
+    z-index: 1;
+    max-height: 80%;
+    margin-top: 9vh;
+}
+
+
+.ftRUSM {
+    height: 80%;
+}
+.faBNEE {
+    right: 0;
+    left: -100%;
+}
+
+.logos {
+
+    // @media screen and (min-height: 500px) and (max-height: 600px) {
+    //     margin-top: 5rem;
+    // }//ok
+    // @media screen and (min-height: 640px) and (max-height: 690px) {
+    //     margin-top: 9rem;
+    // }//ok
+    // @media screen and (min-height: 690px) and (max-height: 700px) {
+    //     margin-top: 11rem;
+    // }//ok
+
+    // @media screen and (min-height: 700px) and (max-height: 740px) {
+    //     margin-top: 15rem;
+    // } //ok
+
+    // @media screen and (min-height: 741px) and (max-height: 760px) {
+    //     margin-top: 20rem;
+    // }
+    // @media screen and (min-height: 761px) and (max-height: 825px) {
+    //     margin-top: 20rem;
+    // }
+    // @media screen and (min-height: 825px) and (max-height: 900px) {
+    //     margin-top: 20rem;
+    // }
+    // @media screen and (min-width: 350px) and (max-width: 359px) {
+    //     margin-top: 20rem;
+    // }
+
+    // @media screen and (min-width: 400px) and (max-width: 410px) {
+    //           bottom: -13rem;
+    // }
+    // @media screen and (min-width: 411px) and (max-width: 450px) {
+    //           bottom: -19rem;
+    // }
+    // @media screen and (min-width: 451px) and (max-width: 500px) {
+    //     margin-top: 22rem;
+    // }
+
+    display: flex;
+    position: fixed;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    bottom: 1rem;
+    width: 100%;
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+        position: relative;
+        z-index: 9999;
+    }
+    
+    
+}
+
+.test {
+    transform: rotateY(180deg);
+    transition: 2s ease;
+}
+
+.ulmenu {
+    width: 100%;
+
+}
+.limenu {
+    width: 100%;
+    margin-top: 2rem;
+    background-color: white;
+    padding: 1rem;
+    border: 0 solid #000;
+    border: 0 solid #000;
+    border-radius: 33% 0 0 0;
+}

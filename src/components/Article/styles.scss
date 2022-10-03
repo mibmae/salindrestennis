@@ -34,10 +34,10 @@
     &_date {
         font-size: medium;
         margin-top: -2rem;
-        margin-left: 10rem;
+        // margin-left: 10rem;
     }
     &_contenu {
-        margin-top: 5rem;
+        margin-top: 3rem;
         // border: 1px solid blue;
     }
 }
@@ -53,7 +53,10 @@
     background-position-x: center;
     background-position-y: center;
     @media screen and (max-width: 500px) {
-    background-size: cover;
+        background-size: contain!important;
+        margin-top: 1rem!important;
+        margin-bottom: -7rem!important;
+        border-radius: 0!important;
     }
 }
 
@@ -63,3 +66,9 @@
     margin-top: 3rem;
 }
 
+.title_section_article {
+    margin: 3rem auto;
+    text-align: center;
+    border-bottom: 1px solid #f56a6a;
+    width: 100%;
+}

@@ -178,7 +178,7 @@ function Admin() {
           <div className="admin_menu">
             <ul className="admin_menu_items">
               {/* <li ><button type="button" className="szh-menu-button myButton"onClick={addBandeau}>Ajouter un item au bandeau</button> </li> */}
-              <li><button type="button" className="szh-menu-button myButton mtbutton">Voir la liste des items</button> </li>
+              {/* <li><button type="button" className="szh-menu-button myButton mtbutton">Voir la liste des items</button> </li> */}
             </ul>
           </div>
           <div className="admin">
@@ -194,20 +194,20 @@ function Admin() {
                     <tbody>
                       {bandeauList.map((article) => (
                         <tr key={generateUniqueKey(article)}>
-                      <td width="90%">{article.titre}</td>
-                      <td width="10%">
-                      <label className="switch">
-                      {article.enligne === 'true' ? (
+                          <td width="90%">{article.titre}</td>
+                          <td width="10%">
+                            <label className="switch">
+                              {article.enligne === 'true' ? (
                                 <input type="checkbox" id={`bandeau${article.id}`} defaultChecked={Boolean(article.enligne)} onClick={(e) => toggleBandeau(e, article.id)} />
                               ) : (<input type="checkbox" id={`bandeau${article.id}`} defaultChecked={false} onClick={(e) => toggleBandeau(e, article.id)} />
                               )}
-                      <span />
-                    </label>
-                    </td>
-                      {/* <td width="10%"> <MdModeEdit onClick={() => modifyBandeau(article.id)} /></td> */}
-                      <td width="10%"> <Link to={`/admin/modifybandeau/${article.id}`}><MdModeEdit /></Link></td>
-                      <td width="10%"> <FaTrash onClick={() => delArticle(article.id)} /></td>
-                    </tr>
+                              <span />
+                            </label>
+                          </td>
+                          {/* <td width="10%"> <MdModeEdit onClick={() => modifyBandeau(article.id)} /></td> */}
+                          <td width="10%"> <Link to={`/admin/modifybandeau/${article.id}`}><MdModeEdit /></Link></td>
+                          <td width="10%"> <FaTrash onClick={() => delArticle(article.id)} /></td>
+                        </tr>
                       ))}
 
                     </tbody>
@@ -232,19 +232,19 @@ function Admin() {
                     <tbody>
                       {articlesList.map((article) => (
                         <tr key={generateUniqueKey(article)}>
-                      <td width="90%"><span>{article.titre}</span></td>
-                      <td width="10%">
-                      <label className="switch">
-                      {article.enligne === 'true' ? (
-                      <input type="checkbox" id={`article${article.id}`} defaultChecked={Boolean(article.enligne)} onClick={(e) => toggleArticle(e, article.id)} />
-                    ) : (<input type="checkbox" id={`article${article.id}`} defaultChecked={false} onClick={(e) => toggleArticle(e, article.id)} />
-                    )}
-                      <span />
-                    </label>
-                    </td>
-                      <td width="10%"> <Link to={`/admin/modifyarticle/${article.id}`}><MdModeEdit onClick={() => modifyArticle(article.id)} /></Link></td>
-                      <td width="10%"> <FaTrash onClick={() => delArticle(article.id)} /></td>
-                    </tr>
+                          <td width="90%"><span>{article.titre}</span></td>
+                          <td width="10%">
+                            <label className="switch">
+                              {article.enligne === 'true' ? (
+                                <input type="checkbox" id={`article${article.id}`} defaultChecked={Boolean(article.enligne)} onClick={(e) => toggleArticle(e, article.id)} />
+                              ) : (<input type="checkbox" id={`article${article.id}`} defaultChecked={false} onClick={(e) => toggleArticle(e, article.id)} />
+                              )}
+                              <span />
+                            </label>
+                          </td>
+                          <td width="10%"> <Link to={`/admin/modifyarticle/${article.id}`}><MdModeEdit onClick={() => modifyArticle(article.id)} /></Link></td>
+                          <td width="10%"> <FaTrash onClick={() => delArticle(article.id)} /></td>
+                        </tr>
                       ))}
 
                     </tbody>

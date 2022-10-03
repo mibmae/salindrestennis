@@ -62,6 +62,7 @@ return (
    <Route path="/admin" exact element={<><Header /><Admin /></>} />
    <Route path="/admin/modifybandeau/:idArt" exact element={<><Header /><ModifyBandeau /></>} />
    <Route path="/admin/modifyarticle/:idArt" exact element={<><Header /><ModifyArticle /></>} />
+   <Route path="/admin/modifyarticle/:idArt/:visu" exact element={<><Header /><ModifyArticle /></>} />
    <Route path="/admin/newbandeau" exact element={<><Header /><NewBandeau /></>} />
    <Route path="/admin/newarticle" exact element={<><Header /><NewArticle /></>} />
    <Route path="*" element={<><Header /><Bandeau /><NotFound /></>} />

@@ -28,14 +28,14 @@
     &_date {
         font-size: medium;
         margin-top: -2rem;
-        margin-left: 10rem;
+        // margin-left: 10rem;
         @media screen and (max-width: 500px) and (orientation: portrait) {
             margin: -1rem 4rem;
             font-size: small;
         }
     }
     &_contenu {
-        margin-top: 5rem;
+        margin-top: 3rem;
         @media screen and (max-width: 500px) and (orientation: portrait) {
             margin-top: 3rem;
         }

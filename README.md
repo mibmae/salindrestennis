@@ -374,3 +374,5 @@ Ou
 ## Installer yarn
 
 Suivre https://classic.yarnpkg.com/en/docs/install/ en fonction de votre OS
+#   s a l i n d r e s t e n n i s  
+ 

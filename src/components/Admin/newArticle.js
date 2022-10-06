@@ -221,7 +221,7 @@ function NewArticle() {
               toolbar: 'undo redo | formatselect | '
             + 'bold italic underline backcolor forecolor fontsize fontfamily | alignleft aligncenter '
             + 'alignright alignjustify | bullist numlist outdent indent | '
-            + 'removeformat | help | language | emoticons | code',
+            + 'removeformat | help | language | emoticons | image | code',
               // toolbar: 'language',
               selector: 'textarea', // change this value according to your HTML
               language: 'fr_FR',

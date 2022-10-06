@@ -42,27 +42,25 @@ function Admin() {
       .then((response) => response.json())
       // .then((res) => console.log(res.data))
       .then((res) => {
-        console.log(res.data);
         setBandeauList(res.data);
       });
   };
 
-  const getPaging = () => {
-    fetch('https://backtennis.herokuapp.com/paging/all')
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(res.paging);
-      });
-  };
+  // const getPaging = () => {
+  //   fetch('https://backtennis.herokuapp.com/paging/all')
+  //     .then((response) => response.json())
+  //     .then((res) => {
+  //       console.log(res.paging);
+  //     });
+  // };
 
   useEffect(() => {
     getBandeau();
     getArticles();
-    getPaging();
+    // getPaging();
   }, []);
 
   const delArticle = (id) => {
-    console.log(id);
     fetch(`https://backtennis.herokuapp.com/articles/secure/delete/${id}`, {
       method: 'POST',
       headers: {
@@ -72,7 +70,6 @@ function Admin() {
 
       },
     }).then((res) => {
-      console.log(res);
       if (res.status === 200) {
         Swal.fire({
           title: 'Item supprimé',

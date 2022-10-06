@@ -58,7 +58,6 @@ const getEquipes = () => {
   .then((response) => response.json())
   .then((res) => {
     let arrayEquipes = [];
-    console.log(res)
     res.hommes.map((e) => {
       arrayEquipes.push({
         id: e.id,
@@ -147,8 +146,6 @@ const getEquipes = () => {
 }
 
 useEffect(() => {
-  console.log(matchDimanchePro)
-  console.log(matchDimanchePro.filter((e) => e.homologation.sexe === 'F'))
 }, [matchDimanchePro])
 
 
@@ -175,7 +172,6 @@ const getAgendawe = () => {
       const lundi = resultatsMonth[0].agendaDays.filter((match => (moment(match.date).format("DD/MM/YYYY") === moment().isoWeekday(8).format("DD/MM/YYYY"))))
       setDateLundiPro(lundi[0].date)
       setMatchLundiPro(lundi[0].agendaItems);
-      console.log(lundi[0].agendaItems)
       const mardi = resultatsMonth[0].agendaDays.filter((match => (moment(match.date).format("DD/MM/YYYY") === moment().isoWeekday(9).format("DD/MM/YYYY"))))
       setDateMardiPro(mardi[0].date)
       setMatchMardiPro(mardi[0].agendaItems);
@@ -558,37 +554,37 @@ res.phases[0].detailsEquipes.filter((capitaine) => capitaine.idEquipe === id).ma
           <div className="matchofweek"><FcCalendar /> Matchs de la semaine :</div>
 
           {matchSamediPro.length > 0 ? (
-            <div className="calendar_title" onClick={() => showHideProg('samedi')}>{moment(dateSamediPro).locale('fr').format("dddd Do MMMM yyyy")}<IoMdArrowDropdown className="arrow" /></div>
+            <div className="calendar_title" onClick={() => showHideProg('samedi')}>{moment(dateSamediPro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase().replace(/^./, moment(dateSamediPro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase()[0].toUpperCase())}<IoMdArrowDropdown className="arrow" /></div>
           ) : ('')}
           <div className="daysOfMatch" id="samedi">
-          {matchSamediPro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle} - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
-          {matchSamediPro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle} - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
+          {matchSamediPro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
+          {matchSamediPro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
           </div>
 
           {matchDimanchePro.length > 0 ? (
-            <div className="calendar_title" onClick={() => showHideProg('dimanche')}>{moment(dateDimanchePro).locale('fr').format("dddd Do MMMM yyyy")}<IoMdArrowDropdown className="arrow" /></div>
+            <div className="calendar_title" onClick={() => showHideProg('dimanche')}>{moment(dateDimanchePro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase().replace(/^./, moment(dateDimanchePro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase()[0].toUpperCase())}<IoMdArrowDropdown className="arrow" /></div>
           ) : ('')}
           <div className="daysOfMatch" id="dimanche">
           {/* matchDimanchePro.filter((e) => e.homologation.sexe === 'F') */}
-            {matchDimanchePro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle} - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
-            {matchDimanchePro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle} - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
+            {matchDimanchePro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
+            {matchDimanchePro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
           </div>
           {matchLundiPro.length > 0 ? (
-            <div className="calendar_title" onClick={() => showHideProg('lundi')}>{moment(dateLundiPro).locale('fr').format("dddd Do MMMM yyyy")}<IoMdArrowDropdown className="arrow" /></div>
+            <div className="calendar_title" onClick={() => showHideProg('lundi')}>{moment(dateLundiPro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase().replace(/^./, moment(dateLundiPro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase()[0].toUpperCase())}<IoMdArrowDropdown className="arrow" /></div>
           ) : ('')}
           <div className="daysOfMatch" id="lundi">
-            {matchLundiPro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle} <IoIosWoman /> - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
-            {matchLundiPro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle} <IoIosMan /> - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
+            {matchLundiPro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} <IoIosWoman /> - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
+            {matchLundiPro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} <IoIosMan /> - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
           </div>
 
           {matchMardiPro.length > 0 ? (
-            <div className="calendar_title" onClick={() => showHideProg('mardi')}>{moment(dateMardiPro).locale('fr').format("dddd Do MMMM yyyy")}<IoMdArrowDropdown className="arrow" /></div>
+            <div className="calendar_title" onClick={() => showHideProg('mardi')}>{moment(dateMardiPro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase().replace(/^./, moment(dateMardiPro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase()[0].toUpperCase())}<IoMdArrowDropdown className="arrow" /></div>
           ) : ('')}
           <div className="daysOfMatch" id="mardi">
 
-          {matchMardiPro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle} <IoIosWoman /> - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
+          {matchMardiPro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} <IoIosWoman /> - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
          
-          {matchMardiPro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle} <IoIosMan /> - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
+          {matchMardiPro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} <IoIosMan /> - {f.isAtHome === true ? (`${f.clubEquipe1Nom} reçoit ${f.clubEquipe2Nom}`) : (`${f.clubEquipe2Nom} se déplace chez ${f.clubEquipe1Nom}`)} </div>)}
           </div>
           {/* data.filter((item) => new Date(item.date).getMonth() === 9); */}
           {/* let thisWeekSunday = moment().isoWeekday(7).format("DD/MM/YYYY");

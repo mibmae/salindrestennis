@@ -21,7 +21,7 @@ import React, {
         event.preventDefault();
         const forma = document.getElementById('login_form');
         const datas = Object.fromEntries(new FormData(forma).entries());
-        console.log(datas)
+        // console.log(datas)
         fetch('https://backtennis.herokuapp.com/auth/signin', {
         method: 'POST',
         body: JSON.stringify(datas),
@@ -30,7 +30,7 @@ import React, {
           'Content-Type': 'application/json',
         },
       }).then((response) => {
-        // console.log(response)
+        console.log(response)
         response.json()
         .then((res) => localStorage.setItem('token_Tennis', res.token))      
         if (response.status === 200) {
@@ -101,7 +101,7 @@ import React, {
           <input type="submit" name="go" id="go" value="Log in" />
         </p>
       </form>
-        ) : (navigate('/admin'))}
+        ) : ('')}
 </>
     );
   }

@@ -11,14 +11,14 @@ import axios from 'axios'
 const logMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
-      window.location.href="/admin"
+      
       Swal.fire({
         title: 'Connecté',
         text: `Bienvenue ${action.payload.email}`,
         icon: 'success',
         confirmButtonText: 'Cool'
       })
-      
+      window.location.href="/admin"
       return next(action);
     }
     case SIGNIN_BY_TOKEN_ADMIN: {
@@ -29,10 +29,8 @@ const logMiddleware = (store) => (next) => (action) => {
       };
 
       axios.post('https://backtennis.herokuapp.com/auth/signinbytokenadmin', body, { headers }).then((response) => {
-        if (response.data.msg === 'TokenExpiredError' || response.data.msg === 'JsonWebTokenError' || response.data.msg === 'Token Invalid') {
-          
-          store.dispatch(tokenErrorMsg('Connexion expirée, Veuillez vous reconnecter'));
-          // localStorage.removeItem('Token_Jobsilog');
+        // console.log(response.data)
+        if (response.data.msg === 'TokenExpiredError' || response.data.msg === 'JsonWebTokenError' || response.data.msg === 'Token Invalid') {        
           localStorage.removeItem('token_Tennis');
           Swal.fire({
             title: 'Connexion trop longtemps inactive, Veuillez vous reconnecter',

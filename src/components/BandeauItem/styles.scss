@@ -54,14 +54,13 @@
     background-position-y: center;
     @media screen and (max-width: 500px) {
     background-size: cover;
-margin-top: 3rem;
     }
 }
 
 .container_nav {
     display: flex;
     justify-content: space-around;
-    margin-top: 3rem;
+    margin-top: 7rem;
 }
 
 .artd {

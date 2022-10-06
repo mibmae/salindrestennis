@@ -60,8 +60,8 @@ function Admin() {
     // getPaging();
   }, []);
 
-  const delArticle = (id) => {
-    fetch(`https://backtennis.herokuapp.com/articles/secure/delete/${id}`, {
+  const delBandeau = (id) => {
+    fetch(`https://backtennis.herokuapp.com/bandeau/secure/delete/${id}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -82,16 +82,30 @@ function Admin() {
           }
         });
       }
-      // Swal.fire({
-      //   title: 'Article ajouté',
-      //   text: `L'article a bien été ajouté`,
-      //   icon: 'success',
-      //   confirmButtonText: 'Ok'
-      // }).then((result) => {
-      //   if (result.isConfirmed) {
-      //     navigate('/admin')
-      //   }
-      // })
+    });
+  };
+  const delArticle = (id) => {
+    fetch(`https://backtennis.herokuapp.com/articles/secure/delete/${id}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'x-access-token': `${localStorage.getItem('token_Tennis')}`,
+
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        Swal.fire({
+          title: 'Item supprimé',
+          text: 'L\'item a bien été supprimé',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            getArticles();
+          }
+        });
+      }
     });
   };
   // const addBandeau = () => {
@@ -203,7 +217,7 @@ function Admin() {
                           </td>
                           {/* <td width="10%"> <MdModeEdit onClick={() => modifyBandeau(article.id)} /></td> */}
                           <td width="10%"> <Link to={`/admin/modifybandeau/${article.id}`}><MdModeEdit /></Link></td>
-                          <td width="10%"> <FaTrash onClick={() => delArticle(article.id)} /></td>
+                          <td width="10%"> <FaTrash onClick={() => delBandeau(article.id)} /></td>
                         </tr>
                       ))}
 

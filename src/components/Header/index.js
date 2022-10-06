@@ -141,7 +141,7 @@ function Header() {
                   <Link to="/equipes" onClick={() => closeMenu()}><MenuButton className="myButton_menu">Equipes</MenuButton></Link>
                 </span>
                 {store.getState().Tennis.logged === true ? (
-                  <MenuButton className="myButton_menu"><Link to="/admin">Admin</Link></MenuButton>
+                 <Link to="/admin"> <MenuButton onClick={() => closeMenu()} className="myButton_menu">Admin</MenuButton></Link>
 
                 ) : ('') }
               </li>

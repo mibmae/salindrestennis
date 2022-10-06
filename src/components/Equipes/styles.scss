@@ -60,7 +60,7 @@
     margin: 0 auto;
     margin-bottom: 1rem;
     // @media screen and (max-width: 500px) {
-        margin-left: -0.5rem;
+        // margin-left: -0.5rem;
         background-color: bisque;
         border: 0;
         border-radius: 1rem;
@@ -191,4 +191,13 @@
     margin-right: auto;
     z-index: 9999;
     font-size: larger;
+    @media screen and (max-width: 500px) {
+        left: 50%;
+    }
+}
+
+.chargement {
+    @media screen and (max-width: 500px) {
+        display: none;
+    }
 }

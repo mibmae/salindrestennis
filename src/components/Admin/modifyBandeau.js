@@ -255,19 +255,19 @@ function ModifyBandeau() {
                 apiKey="smjum8kze60gypxv6t759k3qhkm16lgg80q9f5mchghzvgd0"
                 initialValue={bandeau.contenu}
                 init={{
-                  height: 500,
-                  menubar: true,
-                  plugins: 'lists link image help wordcount emoticons code',
-                  toolbar: 'undo redo | formatselect | '
+              height: 500,
+              menubar: true,
+              plugins: 'lists link image help wordcount emoticons code',
+              toolbar: 'undo redo | formatselect | '
             + 'bold italic underline backcolor forecolor fontsize fontfamily | alignleft aligncenter '
             + 'alignright alignjustify | bullist numlist outdent indent | '
-            + 'removeformat | help | language | emoticons | code',
-                  // toolbar: 'language',
-                  selector: 'textarea', // change this value according to your HTML
-                  language: 'fr_FR',
-                  content_style: "@import url('https://fonts.googleapis.com/css2?family=ABeeZee&family=Montserrat:wght@300;400&display=swap')",
-                  font_family_formats: 'ABeeZee=abeezee,sans-serif; Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace; AkrutiKndPadmini=Akpdmi-n; ',
-                }}
+            + 'removeformat | help | language | emoticons | image | code',
+              // toolbar: 'language',
+              selector: 'textarea', // change this value according to your HTML
+              language: 'fr_FR',
+              content_style: "@import url('https://fonts.googleapis.com/css2?family=ABeeZee&family=Montserrat:wght@300;400&display=swap')",
+              font_family_formats: 'ABeeZee=abeezee,sans-serif; Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace; AkrutiKndPadmini=Akpdmi-n; ',
+            }}
                 textareaName="content"
                 name="contenu"
               />

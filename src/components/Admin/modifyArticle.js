@@ -279,7 +279,7 @@ function ModifyArticle() {
                 textareaName="content"
                 name="contenu"
               />
-              <button className="myButton" type="submit"> Envoyer </button>
+              <button className="myButton_modify" type="submit"> Envoyer </button>
             </form>
           </div>
         ) : ('TINTIN')}

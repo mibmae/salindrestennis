@@ -51,9 +51,9 @@
 
 .readmore {
 
-    background:linear-gradient(135deg, #17ead9 0%,#6078ea 100%);
+    background:linear-gradient(135deg,#5555,#F56A6A)!important;
     border: 0;
-    
+    margin: 0 4.4rem;
         }
 
 .readmore:hover{
@@ -90,3 +90,8 @@
         //         width: 80%!important;
         //     }
         //  }
+
+        .swiper-button-next, .swiper-button-prev {
+            top: 36%!important;
+            color: #F56A6A!important;
+        }

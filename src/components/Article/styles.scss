@@ -11,6 +11,7 @@
 .container_art {
     @media screen and (max-width: 500px) and (orientation: portrait) {
         margin-top: 3rem;
+        // position: relative;
     }
 }
 
@@ -21,7 +22,8 @@
     font-family: ABeeZee,sans-serif!important;
     @media screen and (max-width: 500px) and (orientation: portrait) {
 
-    width: 97%;
+    width: 100%;
+    // width: 97%;
     margin: -2rem auto;
     height: 100%;
     margin-bottom: 3rem;
@@ -34,12 +36,34 @@
     &_date {
         font-size: medium;
         margin-top: -2rem;
-        // margin-left: 10rem;
+        margin-bottom: 2rem;
+        background-color: bisque;
+        padding: 1rem;
+        width: 34%;
+        border-radius: 1rem 2rem 3rem;
+        font-weight: 600;
+
+        @media screen and (max-width: 500px) and (orientation: portrait) {
+            font-size: medium;
+            margin: -1rem 0.4rem -2rem;
+            text-align: center;
+            width: 75%;
+        }
+
     }
     &_contenu {
+        @media screen and (max-width: 500px) and (orientation: portrait) {
         margin-top: 3rem;
-        // border: 1px solid blue;
+        margin-left: 0.7rem;
+        margin-right: 0.5rem;
+        text-align: justify;
+        }
     }
+}
+
+.img_articles {
+    width: 100%;
+    margin-top: 6.4rem;
 }
 
 .mtp {
@@ -49,15 +73,17 @@
 .band {
     // height: 100%!important;
     // background-image: url('https://www.tcbalma.fr/cache/images/9b45c9e41bb6f21a37e9a4a7fc394516_11fc6c4d0a8c4217e60d8e3bb7c5a8fa.jpg');
-    height: 25rem;
-    background-position-x: center;
-    background-position-y: center;
-    @media screen and (max-width: 500px) {
-        background-size: contain!important;
-        margin-top: 1rem!important;
-        margin-bottom: -7rem!important;
-        border-radius: 0!important;
-    }
+    // height: 25rem;
+    width: 100%;
+    margin-top: 6rem;
+    // background-position-x: center;
+    // background-position-y: center;
+    // @media screen and (max-width: 500px) {
+    //     background-size: contain!important;
+    //     margin-top: 0rem!important;
+    //     margin-bottom: -8rem!important;
+    //     border-radius: 0!important;
+    // }
 }
 
 .container_nav {

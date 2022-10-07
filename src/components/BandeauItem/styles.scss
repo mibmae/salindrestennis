@@ -8,7 +8,7 @@
     align-content: center;
 }
 
-.article {
+.bandeau_item {
     padding: 0 6em 0.1em;
     margin: 3rem auto 3rem;
     max-width: 64em;
@@ -22,22 +22,48 @@
     padding: 0;
     }
     &_title {
-        font-size: large;
-        margin-top: 1rem;
+                    margin: 3rem auto;
+            text-align: center;
+            border-bottom: 1px solid #F56A6A;
+            width: 100%;
+            @media screen and (max-width: 500px) {
+             width: 100%;
+             margin-top: -1rem;
+             margin-bottom: -3rem;
+            }
+            @media screen and (max-width: 700px) and (orientation: landscape) {
+                width: 100%;
+            }
+        
     }
     &_date {
         font-size: medium;
         margin-top: -2rem;
-        // margin-left: 10rem;
+        margin-bottom: 3rem;
+        // background-color: bisque;
+        background-color: bisque;
+        padding: 1rem;
+        width: 34%;
+        height: 3rem;
+        border-radius: 1rem 2rem 3rem;
+        font-weight: 600;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+
         @media screen and (max-width: 500px) and (orientation: portrait) {
-            margin: -1rem 4rem;
-            font-size: small;
+            font-size: medium;
+            margin: -1rem 0.4rem -2rem;
+            text-align: center;
+            width: 75%;
         }
+
     }
     &_contenu {
         margin-top: 3rem;
         @media screen and (max-width: 500px) and (orientation: portrait) {
             margin-top: 3rem;
+           
         }
     }
 }
@@ -54,17 +80,84 @@
     background-position-y: center;
     @media screen and (max-width: 500px) {
     background-size: cover;
+    height: 13rem;
     }
+}
+
+.col-8 {
+    @media screen and (max-width: 500px) {
+        width: 100%!important;;
+        }
 }
 
 .container_nav {
     display: flex;
     justify-content: space-around;
     margin-top: 7rem;
+    @media screen and (max-width: 500px) {
+        flex-wrap: wrap;
+        }
 }
 
 .artd {
     @media screen and (max-width: 500px) and (orientation: portrait) {
         margin: 2rem auto;
     }
+}
+
+.st-center {
+    margin-left: 0.2rem!important;
+}
+
+.st-inline-share-buttons {
+    margin-top: -0.2rem!important;
+    margin-left: 0.3rem!important;
+
+}
+
+.st-label {
+    display: block!important;
+}
+
+// #sharethis-1665133807811 .st-btn[data-network='facebook'] > span {
+//     color: #fff;
+//     font-size: 0.7rem!important;
+//     margin-top: -2rem!important;
+//     margin-left: 1rem!important;
+// }
+
+// #sharethis-1665133807811 .st-btn > img {
+//     display: inline-block!important;
+//     height: 15px;
+//     width: 15px;
+//     position: relative!important;
+//     top: 5px!important;
+//     left: -23px!important;
+//     vertical-align: top!important;
+// }
+
+.sharebox {
+    position: relative;
+    display: inline-block;
+    padding: 0.8rem 1rem 0.8rem 2.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Rum Raisin,sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    width: 30%;
+    margin-top: 2rem;
+    color: #363636;
+}
+
+
+.sharebox > .fb-icon {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    bottom: 2.2rem;
+    left: 7px;
+    border-radius: 1rem;
+
 }

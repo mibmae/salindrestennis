@@ -19,7 +19,6 @@ import './styles.scss';
 function ModifyArticle() {
   if (store.getState().Tennis.logged === true) {
     const { idArt, visu } = useParams();
-    console.log(idArt, visu);
     const navigate = useNavigate();
 
     const {
@@ -267,7 +266,7 @@ function ModifyArticle() {
               menubar: true,
               plugins: 'lists link image help wordcount emoticons code',
               toolbar: 'undo redo | formatselect | '
-            + 'bold italic underline backcolor forecolor fontsize fontfamily | alignleft aligncenter '
+            + 'bold italic underline backcolor forecolor fontsize fontfamily | image | alignleft aligncenter '
             + 'alignright alignjustify | bullist numlist outdent indent | '
             + 'removeformat | help | language | emoticons | image | code',
               // toolbar: 'language',

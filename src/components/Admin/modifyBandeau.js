@@ -39,7 +39,7 @@ function ModifyBandeau() {
         .then((response) => response.json())
         .then((res) => {
           setBandeau(res.data[0]);
-          console.log(res.data[0]);
+          // console.log(res.data[0]);
           setImg(res.data[0].image);
           setLoading(false);
         });
@@ -50,7 +50,7 @@ function ModifyBandeau() {
       fetch('https://backtennis.herokuapp.com/picture/list')
         .then((response) => response.json())
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setPics(res.array);
         });
     };
@@ -60,7 +60,7 @@ function ModifyBandeau() {
       const forma = document.getElementById('formmodify');
       const datas = Object.fromEntries(new FormData(forma).entries());
       datas.date = bandeau.date;
-      console.log(datas);
+      // console.log(datas);
       fetch(`https://backtennis.herokuapp.com/bandeau/modify/${idArt}`, {
         method: 'POST',
         body: JSON.stringify(datas),
@@ -259,9 +259,9 @@ function ModifyBandeau() {
               menubar: true,
               plugins: 'lists link image help wordcount emoticons code',
               toolbar: 'undo redo | formatselect | '
-            + 'bold italic underline backcolor forecolor fontsize fontfamily | alignleft aligncenter '
+            + 'bold italic underline backcolor forecolor fontsize fontfamily | image | alignleft aligncenter '
             + 'alignright alignjustify | bullist numlist outdent indent | '
-            + 'removeformat | help | language | emoticons | image | code',
+            + 'removeformat | help | language | emoticons | code',
               // toolbar: 'language',
               selector: 'textarea', // change this value according to your HTML
               language: 'fr_FR',

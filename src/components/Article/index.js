@@ -6,6 +6,7 @@ import { ImEye } from 'react-icons/im';
 import { MdModeEdit } from 'react-icons/md';
 import store from 'src/store';
 import fb from 'src/assets/images/facebook-share-button-icon.svg';
+import Helmet from 'react-helmet';
 
 import './styles.scss';
 
@@ -42,6 +43,18 @@ function Article() {
 
   return (
     <div className="article">
+      <Helmet>
+      <meta property="og:type"          content="website" />
+            <meta name="description" content={article.titre} />
+            <meta property="og:title" content={article.titre} />
+            <meta property="og:image" content={article.image} />
+      </Helmet>
+      {/* <meta property="og:url" content="http://www.salindrestennis.fr/article.php?id=69" />
+                                    <meta property="og:type"          content="website" />
+                                    <meta property="og:title"         content="Fin du Tournois de double : Résultats et photos !" />
+                                    <meta property="og:description"   content="Le site de l'AS Salindres Tennis" />
+                                    <meta property="og:image"         content="https://scontent.fctt1-1.fna.fbcdn.net/v/t39.30808-6/299679304_5395871710528096_5267388161371078485_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=9XTMcY6VjPsAX_TMIoL&_nc_ht=scontent.fctt1-1.fna&oh=00_AT98MuNOfAbdG2Kz-LTLOr8htOQlriWtS09KsNUlQ-bXMA&oe=631FF73E" />
+									<meta name="description" content="Fin du Tournois de double : Résultats et photos !"></meta> */}
      {window.screen.width > 500 ? (
         <div
           className="band mtp"
@@ -65,7 +78,7 @@ function Article() {
       )}
       <div className="container_art">
         <h1 className="title_section_article">{article.titre} {store.getState().Tennis.logged === true ? (<span><Link to={`/admin/modifyarticle/${article.id}/visu`}><MdModeEdit /></Link></span>) : ('')}</h1>
-        <h5 className="bandeau_item_date">Le {article.date} <span> - <ImEye /> {vues}</span>  <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} className="sharebox">
+        <h5 className="bandeau_item_date">Le {article.date} <span> - <ImEye /> {vues}</span>  <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="blank" className="sharebox">
             <span className="fb-icon" style={{backgroundImage: `url(${fb})`}}></span></a></h5>
         <div className="article_contenu"> {ReactHtmlParser(article.contenu)}</div>
         <div className="container_nav">

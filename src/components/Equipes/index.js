@@ -398,7 +398,7 @@ if (e === 'V') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
 if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
 }
                     if (e === null) {
                       return '- ';
@@ -434,7 +434,7 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
 if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
 }
                     if (e === null) {
                       return '- ';
@@ -472,7 +472,7 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
                       return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
                     }
 if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
 }
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
@@ -508,7 +508,7 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
                       return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
                     }
 if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
 }
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
@@ -557,7 +557,7 @@ return e;
                     }
 
    if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
 }                 if (e === null) {
                       return '- ';
                     }
@@ -598,7 +598,7 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
                       return <ImCross className="spaceafter_d" />;
                     }
 if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
 }
                     if (e === null) {
                       return '- ';

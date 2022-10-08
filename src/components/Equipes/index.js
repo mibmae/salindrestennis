@@ -9,6 +9,7 @@ import { IoMdArrowDropdown, IoIosMan, IoIosWoman } from 'react-icons/io';
 import { BsFillTrophyFill } from 'react-icons/bs';
 import { RiTeamFill } from 'react-icons/ri';
 import { FcCalendar } from 'react-icons/fc';
+import { FaRegHandSpock } from 'react-icons/fa';
 import { AiOutlineWoman, AiOutlineMan } from 'react-icons/ai';
 import { ImCross } from 'react-icons/im';
 import { TailSpin, RotatingLines } from 'react-loader-spinner';
@@ -396,6 +397,9 @@ if (e === 'V') {
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
+if (e === 'N') {
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+}
                     if (e === null) {
                       return '- ';
                     }
@@ -429,6 +433,9 @@ if (e === 'V') {
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
+if (e === 'N') {
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+}
                     if (e === null) {
                       return '- ';
                     }
@@ -464,6 +471,9 @@ if (e === 'V') {
                     if (e === 'V') {
                       return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
                     }
+if (e === 'N') {
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+}
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
@@ -497,6 +507,9 @@ if (e === 'V') {
                     if (e === 'V') {
                       return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
                     }
+if (e === 'N') {
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+}
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
@@ -542,7 +555,10 @@ return e;
                     if (e === 'D') {
                       return <ImCross className="spaceafter_d" />;
                     }
-                    if (e === null) {
+
+   if (e === 'N') {
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+}                 if (e === null) {
                       return '- ';
                     }
 
@@ -581,6 +597,9 @@ return e;
                     if (e === 'D') {
                       return <ImCross className="spaceafter_d" />;
                     }
+if (e === 'N') {
+return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_d" />
+}
                     if (e === null) {
                       return '- ';
                     }

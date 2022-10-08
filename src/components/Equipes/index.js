@@ -389,7 +389,8 @@ res.phases[0].detailsEquipes.filter((capitaine) => capitaine.idEquipe === id).ma
                 </Card.Text>
                 <Card.Text>
                   <span className="resultats">{e.phases[0].rencontres.map(function (e) {
-                    if (e === 'V') {
+                    
+if (e === 'V') {
                       return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
                     }
                     if (e === 'D') {
@@ -398,6 +399,7 @@ res.phases[0].detailsEquipes.filter((capitaine) => capitaine.idEquipe === id).ma
                     if (e === null) {
                       return '- ';
                     }
+return e;
 
                   })}</span>
                 </Card.Text>

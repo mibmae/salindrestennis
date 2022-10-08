@@ -226,7 +226,7 @@ const getProchainMatch = (id) => {
   .then((response => response.json()))
   .then((res) => {
     // let thisWeekSaturday = moment().isoWeekday(6).format("DD/MM/YYYY");
-    const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isAfter(moment()))).filter((ppp) => moment(ppp.dateTheorique).isAfter(moment())).map((e) => e)
+    const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isSameOrAfter(moment()))).filter((ppp) => moment(ppp.dateTheorique).isAfter(moment())).map((e) => e)
     if (nextMatch[0] !== undefined) {
     if (nextMatch[0].equipe1.id === id) {
       setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique}])

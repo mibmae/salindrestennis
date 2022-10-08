@@ -399,7 +399,6 @@ if (e === 'V') {
                     if (e === null) {
                       return '- ';
                     }
-return e;
 
                   })}</span>
                 </Card.Text>
@@ -504,7 +503,7 @@ return e;
                     if (e === null) {
                       return '- ';
                     }
-
+return e;
                   })}</span>
                 </Card.Text>
                 <Card.Text>

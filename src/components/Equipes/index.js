@@ -16,6 +16,7 @@ import { TbExternalLink  } from 'react-icons/tb';
 import { ImCross } from 'react-icons/im';
 import { TailSpin, RotatingLines } from 'react-loader-spinner';
 import Logo from 'src/assets/images/logot.png';
+import store from 'src/store';
 
 
 function Equipes() {
@@ -67,12 +68,16 @@ const [capitaines, setCapitaines] = useState([]);
         elements[i].style.display = "block";
     }
     document.getElementById('matchofweek').style.textAlign = 'left';
+    document.getElementById('programmeSe').style.margin = 0;
+    document.getElementById('end').style.display = 'none';
+
     if (window.screen.width < 500) {
       document.getElementById('programmeSe').style.width = '100%';
     } else {
     document.getElementById('programmeSe').style.width = '65%';
     }
     setTimeout(() => {
+      setLoading(true)
       toPng(ref.current, { cacheBust: true, })
       .then((dataUrl) => {
         const link = document.createElement('a')
@@ -80,18 +85,22 @@ const [capitaines, setCapitaines] = useState([]);
         link.href = dataUrl
         link.click()
         document.getElementById('matchofweek').style.textAlign = 'center';
+        document.getElementById('programmeSe').style.margin = '0 auto 5rem';
+        document.getElementById('end').style.display = 'block';
+        setLoading(false)
+
       })
       .catch((err) => {
         console.log(err)
       })
-    }, 2000);
+    }, 4000);
     
   }, [ref])
 
   const displayProgSemaine = () => (
     <div className="programmeSe" id="programmeSe" ref={ref}>
       <pre>
-          <div id="matchofweek" className="matchofweek"> <img src={Logo} className="logo_calendar" /><FcCalendar /> Matchs de la semaine : <TbExternalLink id="exp" onClick={exportProg} /></div>
+          <div id="matchofweek" className="matchofweek"> <img src={Logo} className="logo_calendar" /><FcCalendar /> Matchs de la semaine : {(store.getState().Tennis.logged === true) && (<TbExternalLink id="exp" onClick={exportProg} />)}</div>
           {matchLundiPro.length > 0 ? (
             <div className="calendar_title" onClick={() => showHideProg('lundi')}>{moment(dateLundiPro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase().replace(/^./, moment(dateLundiPro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase()[0].toUpperCase())} ({matchLundiPro.length})<IoMdArrowDropdown className="arrow" /></div>
           ) : ('')}
@@ -123,6 +132,9 @@ const [capitaines, setCapitaines] = useState([]);
           {/* matchDimanchePro.filter((e) => e.homologation.sexe === 'F') */}
             {matchDimanchePro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} - {f.isAtHome === true ? (<><BsHouseDoorFill /> {f.clubEquipe1Nom} VS {f.clubEquipe2Nom}</>) : (<><TbExternalLink /> {f.clubEquipe1Nom} VS {f.clubEquipe2Nom}</>)} </div>)}
             {matchDimanchePro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} - {f.isAtHome === true ? (<><BsHouseDoorFill /> {f.clubEquipe1Nom} VS {f.clubEquipe2Nom}</>) : (<><TbExternalLink /> {f.clubEquipe1Nom} VS {f.clubEquipe2Nom}</>)} </div>)}
+          </div>
+          <div className="end" id="end">
+            Fin de la programmation de la semaine
           </div>
          </pre>
         </div>
@@ -216,9 +228,9 @@ const getEquipes = () => {
     setEquipeFplus(res.femmesPlus)
     setEquipeFille(res.filles)
     setEquipeGarcon(res.garcons)
-    setTimeout(() => document.getElementById('footer').style.display = 'block', 3000)
-    setTimeout(() => document.getElementById('equipes').style.display = 'block', 3000)
-    setTimeout(() => setLoading(false), 3500)
+    setTimeout(() => document.getElementById('footer').style.display = 'block', 2500)
+    setTimeout(() => document.getElementById('equipes').style.display = 'block', 2500)
+    setTimeout(() => setLoading(false), 2800)
   })
 }
 
@@ -530,7 +542,7 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
           {(equipesHplus.length > 0 ? equipesHplus.map((e) => (
             <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '18rem', margin: '0 auto' }}>
               {/* <Card.Img variant="bottom" className="img_card" src="https://www.salindrestennis.fr/images/logo.png" /> */}
-              <Card.Header className="card-header_equipes">{e.id}{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
+              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
 
               <Card.Body>
                 <span className="card_date">{e.nom}</span>

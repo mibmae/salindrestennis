@@ -85,10 +85,12 @@ function Header() {
             <Link to="/admin"><MenuButton className="myButton">Admin</MenuButton></Link> /// changer LINK pour prendre le bouton entier
           ) : ('')}
           <div className="header_logos_container">
-            <span className="social"><a href="https://www.facebook.com/tc.salindres" target="_blank" rel="noreferrer"><FaFacebookF /></a></span>
-            <span className="social"><a href="https://www.snapchat.com/add/asstennis30340" target="_blank" rel="noreferrer"><BsSnapchat /></a></span>
-            <span className="social"><a href="https://www.instagram.com/assalindrestennis/" target="_blank" rel="noreferrer"><BsInstagram /></a></span>
+            <span className="socialfb"><a href="https://www.facebook.com/tc.salindres" target="_blank" rel="noreferrer"><FaFacebookF /></a></span>
+            <span className="socialsnap"><a href="https://www.snapchat.com/add/asstennis30340" target="_blank" rel="noreferrer"><BsSnapchat /></a></span>
+            {/* <span className="social"><a href="https://www.instagram.com/assalindrestennis/" target="_blank" rel="noreferrer"><BsInstagram /></a></span> */}
+            <span className="social"><a href="https://www.instagram.com/assalindrestennis/" target="_blank" rel="noreferrer"><img className="logo_social" src="https://static.cdninstagram.com/rsrc.php/v3/yG/r/De-Dwpd5CHc.png" /></a></span>
           </div>
+  
         </nav>
         { (window.screen.width < 900) && (
         <StyledOffCanvas
@@ -146,6 +148,14 @@ function Header() {
                 ) : ('') }
               </li>
             </ul>
+            <div className="followus">Suivez-nous !</div>
+            <div className="menu_logos_container">
+              
+            <span className="socialfbmenu"><a href="https://www.facebook.com/tc.salindres" target="_blank" rel="noreferrer"><FaFacebookF /></a></span>
+            <span className="socialsnapmenu"><a href="https://www.snapchat.com/add/asstennis30340" target="_blank" rel="noreferrer"><BsSnapchat /></a></span>
+            {/* <span className="social"><a href="https://www.instagram.com/assalindrestennis/" target="_blank" rel="noreferrer"><BsInstagram /></a></span> */}
+            <span className="socialmenu"><a href="https://www.instagram.com/assalindrestennis/" target="_blank" rel="noreferrer"><img className="logo_social_mob" src="https://static.cdninstagram.com/rsrc.php/v3/yG/r/De-Dwpd5CHc.png" /></a></span>
+          </div>
           </Menue>
           {/* <Overlay /> */}
         </StyledOffCanvas>

@@ -160,6 +160,8 @@ color: green;
     margin-right: 6rem;
     // display: flex;
     }
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .matchofweek {
@@ -212,4 +214,16 @@ color: green;
 
 .logo_calendar {
     width: 8%;
+}
+
+.end {
+    // cursor: pointer;
+    padding: 1rem;
+    margin: 0 auto 1rem;
+    background-color: bisque;
+    border: 0;
+    border-radius: 1rem;
+    text-align: left;
+    font-weight: 600;
+    width: 99%;
 }

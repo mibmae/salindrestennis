@@ -68,7 +68,7 @@ return (
    <Route path="/admin/modifyarticle/:idArt/:visu" exact element={<><Header /><ModifyArticle /></>} />
    <Route path="/admin/newbandeau" exact element={<><Header /><NewBandeau /></>} />
    <Route path="/admin/newarticle" exact element={<><Header /><NewArticle /></>} />
-   <Route path="/contacts" element={<><Header /><Bandeau /><Contacts /></>} />
+   <Route path="/contacts" element={<><Header /><Contacts /><Footer /></>} />
    <Route path="*" element={<><Header /><Bandeau /><NotFound /></>} />
    </Routes>
    {/* </Router> */}

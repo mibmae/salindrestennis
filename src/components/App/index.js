@@ -35,6 +35,7 @@ import ModifyArticle from '../../containers/ModifyArticle';
 import News from 'src/components/News';
 import NewBandeau from '../Admin/newBandeau';
 import NewArticle from '../Admin/newArticle';
+import Contacts from '../Contacts';
 
 const tokenAdmin = localStorage.getItem('token_Tennis');
 if (tokenAdmin !== 'undefined' && tokenAdmin !== null && tokenAdmin !== '') {
@@ -67,6 +68,7 @@ return (
    <Route path="/admin/modifyarticle/:idArt/:visu" exact element={<><Header /><ModifyArticle /></>} />
    <Route path="/admin/newbandeau" exact element={<><Header /><NewBandeau /></>} />
    <Route path="/admin/newarticle" exact element={<><Header /><NewArticle /></>} />
+   <Route path="/contacts" element={<><Header /><Bandeau /><Contacts /></>} />
    <Route path="*" element={<><Header /><Bandeau /><NotFound /></>} />
    </Routes>
    {/* </Router> */}

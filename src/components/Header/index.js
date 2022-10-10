@@ -133,7 +133,7 @@ function Header() {
                 </span>
               </li>
               <li>
-                <span className="menu_subtitle "><MenuButton onClick={() => closeMenu()} className="myButton_menu">Test</MenuButton>
+                <span className="menu_subtitle ">
                   <Menu menuButton={<MenuButton className="myButton_menu">Tarifs <IoMdArrowDropdown /></MenuButton>} transition>
                     <Link to="/cotisations"><MenuItem onClick={() => closeMenu()}>Cotisations</MenuItem></Link>
                     <Link to="/entrainements"><MenuItem onClick={() => closeMenu()}>Entrainements</MenuItem></Link>

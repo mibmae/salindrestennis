@@ -1,16 +1,10 @@
 import React from 'react';
 import './styles.scss';
 import gmaps from 'src/assets/images/gmap.png';
+import { Link } from 'react-router-dom';
 
 function Footer() {
-  const AnyReactComponent = ({ text }) => <div>{text}</div>;
-  const defaultProps = {
-    center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
-    },
-    zoom: 11,
-  };
+
   return (
     <div className="footer" id="footer">
       <div className="footer_container">
@@ -21,6 +15,7 @@ function Footer() {
           <div className="telephone"><span id="e319785452"><a href="tel:0667091166" itemProp="phone">06 67 09 11 66</a></span></div>
           <div className="email"><span id="e319785452"><a href="mailto:salindres.tennis@orange.fr">salindres.tennis@orange.fr</a></span></div>
           <div className="adresse">Complexe sportif du Frigoulou - 30340 Salindres</div>
+          <div id="link_admin"><Link to="/login">Accès Admin</Link></div>
 
         </div>
         <div className="gmap">

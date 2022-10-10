@@ -12,6 +12,13 @@ import ModifyBandeau from 'src/containers/ModifyBandeau/index.js';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import NewBandeau from './newBandeau';
+import {
+  Menu,
+  MenuItem,
+  MenuButton,
+} from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
+import '@szhsin/react-menu/dist/transitions/slide.css';
 
 const Alert = withReactContent(Swal);
 
@@ -196,7 +203,8 @@ function Admin() {
             <div className="list_articles" id="list_articles">
               <h2 className="admin_subtitle">Bandeau</h2>
               <span className="but">
-                <Link to="/admin/newbandeau"><button type="button" className="szh-menu-button myButton">Ajouter un item</button></Link>
+              {/* <Link to="/"><MenuButton className="myButton_menu" onClick={() => closeMenu()}>Accueil</MenuButton></Link> */}
+                <Link to="/admin/newbandeau"><MenuButton className="myButton_menu">Ajouter un Item</MenuButton></Link>
               </span>
               <div className="list_data">
                 <div className="table-wrapper">
@@ -234,7 +242,7 @@ function Admin() {
             <div className="list_articles" id="list_articless">
               <h2 className="admin_subtitle">Articles</h2>
               <span className="but">
-                <Link to="/admin/newarticle"><button type="button" className="szh-menu-button myButton">Ajouter un item</button></Link>
+              <Link to="/admin/newarticle"><MenuButton className="myButton_menu">Ajouter un article</MenuButton></Link>
               </span>
               <div className="list_data">
                 <div className="table-wrapper">

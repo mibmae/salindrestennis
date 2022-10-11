@@ -199,6 +199,10 @@ function Admin() {
               {/* <li><button type="button" className="szh-menu-button myButton mtbutton">Voir la liste des items</button> </li> */}
             </ul>
           </div>
+          <div className="menumobadmin">
+          <MenuButton className="myButton_menu mobB" onClick={(e) => navigate('/admin/newbandeau')}>Ajouter un Item au bandeau</MenuButton>
+          <MenuButton className="myButton_menu mobB" onClick={(e) => navigate('/admin/newarticle')}>Ajouter un article</MenuButton>
+          </div>
           <div className="admin">
             <div className="list_articles" id="list_articles">
               <h2 className="admin_subtitle">Bandeau</h2>

@@ -133,7 +133,7 @@
           
           border-radius: 10px;
           overflow-y: hidden;
-          margin: 9rem auto;
+          margin: 5rem auto;
           padding: 1rem;
         //   display: flex;
           -webkit-box-orient: vertical;
@@ -297,6 +297,9 @@ margin-top: 0.3rem;
 .but {
     display: flex;
     margin-left: -2rem;
+    @media screen and (max-width: 500px) {
+        display: none;
+    }
 }
 
 .modifyBandeau {
@@ -382,8 +385,8 @@ margin: 1rem 1rem;
     margin: 6rem auto;
     padding: 1rem;
     @media screen and (max-width: 500px) {
-        width: 94%;
-        margin: 6rem auto;
+        width: 99%;
+        margin: 6rem 0;
         border: 0;
       
     }
@@ -560,6 +563,14 @@ body {
     width: 50%!important;
     margin-top: -2rem;
     margin-bottom: 1rem;
+
+    @media screen and (max-width: 500px) {
+    width: 100%!important;
+    margin-top: -2rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    margin-left: -0.1rem;
+    }
 }
 
 .loader {
@@ -700,4 +711,27 @@ body {
 .myButton_modify:active {
 	position:relative;
 	top:1px;
+}
+
+.menumobadmin {
+    @media screen and (max-width: 500px) {
+    display: flex;
+    margin-left: 1rem;
+    width: 95%;
+    font-size: 12px;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    }
+    display: none;
+}
+
+.mobB {
+    width: 40%;
+    font-size: 12px!important;
+}
+
+.newarticlebutton {
+    @media screen and (max-width: 500px) {
+        margin-left: 0!important;
+    }
 }

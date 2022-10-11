@@ -56,6 +56,7 @@ const [dateLundiPro, setDateLundiPro] = useState([]);
 const [dateMardiPro, setDateMardiPro] = useState([]);
 const [equipesInfosCompletes, setEquipesInfosCompletes] = useState([]);
 const [capitaines, setCapitaines] = useState([]);
+const [classement, setClassement] = useState([]);
   moment().locale('fr')
 
   const exportProg = useCallback(() => {
@@ -203,7 +204,6 @@ const getEquipes = () => {
     
     let array = [];
     res.femmes.map((e) => {
-      console.log(res.femmes)
       array.push(e.id)
     })
     res.hommes.map((e) => {
@@ -234,19 +234,12 @@ const getEquipes = () => {
   })
 }
 
-useEffect(() => {
-}, [matchDimanchePro])
-
-
 const getAgenda = () => {
     fetch('https://gstennis.azurewebsites.net/api/agenda?codeClub=60300117&millesime=2023')
     .then((response) => response.json())
     .then((res) => {
-      // const resultats = res.filter((item) => new Date(item.date).getMonth() === 9);
       const resultats = res.filter((item) => new Date(item.date).getMonth() === new Date().getMonth());
-      console.log(resultats)
       setAgenda(resultats[0].agendaDays)
-      // const test = data.filter((item) => new Date(item.date).getMonth() === 9);
     })
   }
 const getAgendawe = () => {
@@ -269,6 +262,24 @@ const getAgendawe = () => {
     })
   }
 
+  const search = (code) => {
+    fetch(`https://gstennis.azurewebsites.net/api/search`, 
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({search: code})
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      // console.log(res)
+      return res.clubs;
+    })
+  
+  }
+
 
 const getProchainMatch = (id) => {
   fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=82328042&idDivision=115212`)
@@ -276,18 +287,133 @@ const getProchainMatch = (id) => {
   .then((res) => {
     // let thisWeekSaturday = moment().isoWeekday(6).format("DD/MM/YYYY");
     const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isSameOrAfter(moment()))).filter((ppp) => moment(ppp.dateTheorique).isSameOrAfter(moment())).map((e) => e)
+    console.log(nextMatch[0]);
     if (nextMatch[0] !== undefined) {
+      function se(code) {
+      fetch(`https://gstennis.azurewebsites.net/api/search`, 
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({search: code})
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      // console.log(res)
+      console.log(res.clubs);
+    })
+  }
     if (nextMatch[0].equipe1.id === id) {
+      console.log(nextMatch[0].equipe1.codeClub)
+      const club = se((nextMatch[0].equipe2.codeClub));
+      console.log('club', club)
       setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique}])
     }
     if (nextMatch[0].equipe2.id === id) {
       setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe2.id, date: nextMatch[0].dateTheorique}])
     }
+    const getProchainMatch = (id) => {
+  fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=82328042&idDivision=115212`)
+  .then((response => response.json()))
+  .then((res) => {
+    // let thisWeekSaturday = moment().isoWeekday(6).format("DD/MM/YYYY");
+    const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isSameOrAfter(moment()))).filter((ppp) => moment(ppp.dateTheorique).isSameOrAfter(moment())).map((e) => e)
+    console.log(nextMatch[0]);
+    if (nextMatch[0] !== undefined) {
+      if (nextMatch[0].equipe1.id !== id) {
+      fetch(`https://gstennis.azurewebsites.net/api/search`, 
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({search: nextMatch[0].codeClubAccueil})
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      // console.log(res)
+      console.log('RES.CLUBS', res.clubs[0]);
+      if (res.clubs[0].code !== '60300117') {
+        console.log('adversaire', res.clubs[0].nom)
+        setAdversaire(adversaire => [...adversaire, {adversaire: res.clubs[0].nom, date: nextMatch[0].dateTheorique, equipe: id}])
+        setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique}])
+      }
+      // setAdversaire(adversaire => [...adversaire, {adversaire: res.clubs[0].nom, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
+      // if (nextMatch[0].equipe1.id === id) {
+      //   console.log(nextMatch[0])
+
+      //   // const club = se((nextMatch[0].equipe2.codeClub));
+      //   // console.log('club', club)
+      //   // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
+      // }
+      // if (nextMatch[0].equipe2.id === id) {
+      //   // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe2.id, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
+      // }
+    })
+  } else { console.log('tintin')}
+  }
+    
+  
+  });
+  
+ 
+}
   }
   });
   
  
 }
+
+// const getProchainMatch = (id) => {
+//   fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=82328042&idDivision=115212`)
+//   .then((response => response.json()))
+//   .then((res) => {
+//     // let thisWeekSaturday = moment().isoWeekday(6).format("DD/MM/YYYY");
+//     const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isSameOrAfter(moment()))).filter((ppp) => moment(ppp.dateTheorique).isSameOrAfter(moment())).map((e) => e)
+//     console.log(nextMatch[0]);
+//     if (nextMatch[0] !== undefined) {
+//       if (nextMatch[0].equipe1.id !== id) {
+//       fetch(`https://gstennis.azurewebsites.net/api/search`, 
+//     {
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//       },
+//       method: "POST",
+//       body: JSON.stringify({search: nextMatch[0].codeClubAccueil})
+//   })
+//     .then((response) => response.json())
+//     .then((res) => {
+//       // console.log(res)
+//       console.log('RES.CLUBS', res.clubs[0]);
+//       if (res.clubs[0].code !== '60300117') {
+//         console.log('adversaire', res.clubs[0].nom)
+//         setAdversaire(adversaire => [...adversaire, {adversaire: res.clubs[0].nom, date: nextMatch[0].dateTheorique, equipe: id}])
+//         setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique}])
+//       }
+//       // setAdversaire(adversaire => [...adversaire, {adversaire: res.clubs[0].nom, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
+//       // if (nextMatch[0].equipe1.id === id) {
+//       //   console.log(nextMatch[0])
+
+//       //   // const club = se((nextMatch[0].equipe2.codeClub));
+//       //   // console.log('club', club)
+//       //   // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
+//       // }
+//       // if (nextMatch[0].equipe2.id === id) {
+//       //   // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe2.id, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
+//       // }
+//     })
+//   } else { console.log('tintin')}
+//   }
+    
+  
+//   });
+  
+ 
+// }
 
   const getDatesByMonth = (id) => {
     fetch('https://gstennis.azurewebsites.net/api/agenda?codeClub=60300117&millesime=2023')
@@ -323,6 +449,23 @@ const getProchainMatch = (id) => {
       })
   };
 
+  const getInfosEquipes = (id, homologation, division) => {
+    fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=${homologation}&idDivision=${division}`)
+  .then((response) => response.json())
+  .then((res) => {
+    console.log(res)
+res.phases[0].detailsEquipes.filter((capitaine) => capitaine.idEquipe === id).map((nom) => setCapitaines(capitaines => [...capitaines, {idEquipe: nom.idEquipe, capitaine: nom.correspondant.nom.substr(5)}]))
+res.phases[0].classements.filter((classement) => classement.nom.includes('SALINDRES')).map((e) => setClassement(classement => [...classement, {id: id, classement: e.place}]))
+})
+  }
+
+  useEffect(() => {
+    equipesInfosCompletes.map((e) => getInfosEquipes(e.id, e.homologation, e.division))
+  }, [equipesInfosCompletes])
+  useEffect(() => {
+  }, [prochainMatch])
+  useEffect(() => {
+  }, [capitaines])
   useEffect(() => {
     // setTimeout(() => {
       document.getElementById('footer').style.display = 'none'
@@ -337,9 +480,8 @@ const getProchainMatch = (id) => {
     }, 2000);
     // getDatesByMonth(9)
     document.getElementById('equipes').style.display = 'none'
+    // search(60300125);
   }, []);
-
-
   useEffect(() => {
     setNbequipesF(equipesF.length + equipesFplus.length)
     setNbequipesH(equipesH.length + equipesHplus.length)
@@ -354,22 +496,8 @@ const getProchainMatch = (id) => {
       })
     }
   }, [idEquipes]);
-
-  const getInfosEquipes = (id, homologation, division) => {
-    fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=${homologation}&idDivision=${division}`)
-  .then((response) => response.json())
-  .then((res) => {
-res.phases[0].detailsEquipes.filter((capitaine) => capitaine.idEquipe === id).map((nom) => setCapitaines(capitaines => [...capitaines, {idEquipe: nom.idEquipe, capitaine: nom.correspondant.nom.substr(5)}]))
-})
-  }
-
   useEffect(() => {
-    equipesInfosCompletes.map((e) => getInfosEquipes(e.id, e.homologation, e.division))
-  }, [equipesInfosCompletes])
-  useEffect(() => {
-  }, [prochainMatch])
-  useEffect(() => {
-  }, [capitaines])
+  }, [matchDimanchePro])
   
   const showHide = (id, title) => {
     const fleche = document.getElementById(id + "A");
@@ -420,56 +548,50 @@ res.phases[0].detailsEquipes.filter((capitaine) => capitaine.idEquipe === id).ma
           visible={true} /><div className="chargement">Chargement ...</div></div>) : ('')}
     </div><div className="equipes" id="equipes">
         <div className="matchofweek"><RiTeamFill /> Nos équipes engagées en championnat </div>
+
+        {/* Equipes Femmes */}
+
         {(equipesF.length > 0) ? (
           <div className="equipes_title" id='titleFemme' onClick={() => showHide('efemme', 'titleFemme')}><IoIosWoman />Equipes Femmes : ({nbEquipesF}) <IoMdArrowDropdown id='efemmeA' className="arrow" /></div>
         ) : ('')}
         <div id="efemme" className="equipes_list">
           {(equipesF.length > 0 ? equipesF.map((e) => (
             <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '18rem', margin: '0 auto' }}>
-              {/* <Card.Img variant="top" className="card_img" src={e.image} /> */}
-              {/* <Card.Img variant="bottom" className="img_card" src="https://www.salindrestennis.fr/images/logo.png" /> */}
               <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-
               <Card.Body>
                 <span className="card_date">{e.nom}</span>
-                {/* <Card.Title className="card_title_perso">{e.homologation.libelle}</Card.Title> */}
                 <Card.Text>
                   <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
                 </Card.Text>
                 <Card.Text>
                   <span className="resultats">{e.phases[0].rencontres.map(function (e) {
-                    
-if (e === 'V') {
+                    if (e === 'V') {
                       return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
                     }
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
-if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-}
+                    if (e === 'N') {
+                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
+                    }
                     if (e === null) {
                       return '- ';
                     }
-
                   })}</span>
                 </Card.Text>
                 <Card.Text>
-                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span>
-                  <div className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </div>
-
+                  <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
+                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
                 </Card.Text>
               </Card.Body>
             </Card>
           )) : '')}
           {(equipesFplus.length > 0 ? equipesFplus.map((e) => (
             <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '18rem', margin: '0 auto' }}>
-              {/* <Card.Img variant="top" className="card_img" src={e.image} /> */}
-              {/* <Card.Img variant="bottom" className="img_card" src="https://www.salindrestennis.fr/images/logo.png" /> */}
               <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
               <Card.Body>
                 <span className="card_date">{e.nom}</span>
-                {/* <Card.Title className="card_title_perso"></Card.Title> */}
                 <Card.Text>
                   <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
                 </Card.Text>
@@ -481,36 +603,34 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
-if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-}
+                    if (e === 'N') {
+                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
+                    }
                     if (e === null) {
                       return '- ';
                     }
-
                   })}</span>
                 </Card.Text>
                 <Card.Text>
-                  <span key={generateUniqueKey(e)} className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span>
-                  <div className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </div>
-
+                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
+                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
                 </Card.Text>
               </Card.Body>
             </Card>
           )) : '')}
         </div>
+
+        {/* EQUIPE HOMMES */}
         {(equipesH.length > 0) ? (
           <div className="equipes_title" id='titleHomme' onClick={() => showHide('ehomme', 'titleHomme')}><IoIosMan />Equipes Hommes : ({nbEquipesH}) <IoMdArrowDropdown id='ehommeA' className="arrow" /> </div>
         ) : ('')}
         <div id="ehomme" className="equipes_list">
           {(equipesH.length > 0 ? equipesH.map((e) => (
             <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '18rem', margin: '0 auto' }}>
-              {/* <Card.Img variant="bottom" className="img_card" src="https://www.salindrestennis.fr/images/logo.png" /> */}
-              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-
+              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase()).substr(0, 22)}</Card.Header>
               <Card.Body>
                 <span className="card_date">{e.nom}</span>
-                {/* <Card.Title className="card_title_perso">{e.homologation.libelle}</Card.Title> */}
                 <Card.Text>
                   <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
                 </Card.Text>
@@ -519,34 +639,30 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
                     if (e === 'V') {
                       return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
                     }
-if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-}
+                    if (e === 'N') {
+                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
+                    }
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
                     if (e === null) {
                       return '- ';
                     }
-
                   })}</span>
                 </Card.Text>
                 <Card.Text>
-                  <span key={generateUniqueKey(e)} className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span>
-                  <div className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </div>
+                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
+                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
                 </Card.Text>
-                {/* <Button className="readmore"></Button> */}
               </Card.Body>
             </Card>
           )) : '')}
           {(equipesHplus.length > 0 ? equipesHplus.map((e) => (
             <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '18rem', margin: '0 auto' }}>
-              {/* <Card.Img variant="bottom" className="img_card" src="https://www.salindrestennis.fr/images/logo.png" /> */}
               <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-
               <Card.Body>
                 <span className="card_date">{e.nom}</span>
-                {/* <Card.Title className="card_title_perso">{e.homologation.libelle}</Card.Title> */}
                 <Card.Text>
                   <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
                 </Card.Text>
@@ -555,23 +671,23 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
                     if (e === 'V') {
                       return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
                     }
-if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-}
+                    if (e === 'N') {
+                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
+                    }
                     if (e === 'D') {
                       return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
                     }
                     if (e === null) {
                       return '- ';
                     }
-return e;
+                      return e;
                   })}</span>
                 </Card.Text>
                 <Card.Text>
-                  <span key={generateUniqueKey(e)} className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span>
-                  <div className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </div>
+                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
+                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
                 </Card.Text>
-                {/* <Button className="readmore"></Button> */}
               </Card.Body>
             </Card>
           )) : '')}
@@ -579,19 +695,14 @@ return e;
 
 
 
-
-        {/* {(nbEquipesFilles.length < 1) ? ( */}
+                  {/* Equipes Filles */}
         <div className="equipes_title" id="titleFille" onClick={() => showHide('efille', 'titleFille')}><IoIosMan />Equipes Filles : ({nbEquipesFilles}) <IoMdArrowDropdown id='efilleA' className="arrow" /> </div>
-        {/* ) : ('')} */}
         <div id="efille" className="equipes_list">
           {(equipesFille.length > 0 ? equipesFille.map((e) => (
             <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '18rem', margin: '0 auto' }}>
-              {/* <Card.Img variant="bottom" className="img_card" src="https://www.salindrestennis.fr/images/logo.png" /> */}
               <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-
               <Card.Body>
                 <span className="card_date">{e.nom}</span>
-                {/* <Card.Title className="card_title_perso">{e.homologation.libelle}</Card.Title> */}
                 <Card.Text>
                   <span>{e.phases[0].phase.phase.libelle}</span>
                 </Card.Text>
@@ -604,36 +715,32 @@ return e;
                       return <ImCross className="spaceafter_d" />;
                     }
 
-   if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-}                 if (e === null) {
+                    if (e === 'N') {
+                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
+                    }    
+                    if (e === null) {
                       return '- ';
                     }
 
                   })}</span>
                 </Card.Text>
-                {/* <Button className="readmore"></Button> */}
-                <span key={generateUniqueKey(e)} className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span>
-                <div className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </div>
+                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
+                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
 
               </Card.Body>
             </Card>
           )) : '')}
 
         </div>
-
-        {/* {(nbEquipesGarcon.length < 1) ? ( */}
+                  {/* Equipe Garçons */}
         <div className="equipes_title" id='titleGarcon' onClick={() => showHide('egarcon', 'titleGarcon')}><IoIosMan />Equipes Garçons : ({nbEquipesGarcon}) <IoMdArrowDropdown id='egarconA' className="arrow" /> </div>
-        {/* ) : ('')} */}
         <div id="egarcon" className="equipes_list">
           {(equipesGarcon.length > 0 ? equipesGarcon.map((e) => (
             <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '18rem', margin: '0 auto' }}>
-              {/* <Card.Img variant="bottom" className="img_card" src="https://www.salindrestennis.fr/images/logo.png" /> */}
               <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-
               <Card.Body>
                 <span className="card_date">{e.nom}</span>
-                {/* <Card.Title className="card_title_perso">{e.homologation.libelle}</Card.Title> */}
                 <Card.Text>
                   <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
                 </Card.Text>
@@ -645,24 +752,21 @@ return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
                     if (e === 'D') {
                       return <ImCross className="spaceafter_d" />;
                     }
-if (e === 'N') {
-return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-}
+                    if (e === 'N') {
+                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
+                    }
                     if (e === null) {
                       return '- ';
                     }
 
                   })}</span>
                 </Card.Text>
-                {/* <Button className="readmore"></Button> */}
-                <span key={generateUniqueKey(e)} className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span>
-                <div className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </div>
-
+                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
+                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
               </Card.Body>
             </Card>
           )) : '')}
-
-
         </div>
         {displayProgSemaine()}
         </div>

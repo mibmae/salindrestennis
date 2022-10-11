@@ -367,54 +367,7 @@ const getProchainMatch = (id) => {
  
 }
 
-// const getProchainMatch = (id) => {
-//   fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=82328042&idDivision=115212`)
-//   .then((response => response.json()))
-//   .then((res) => {
-//     // let thisWeekSaturday = moment().isoWeekday(6).format("DD/MM/YYYY");
-//     const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isSameOrAfter(moment()))).filter((ppp) => moment(ppp.dateTheorique).isSameOrAfter(moment())).map((e) => e)
-//     console.log(nextMatch[0]);
-//     if (nextMatch[0] !== undefined) {
-//       if (nextMatch[0].equipe1.id !== id) {
-//       fetch(`https://gstennis.azurewebsites.net/api/search`, 
-//     {
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       method: "POST",
-//       body: JSON.stringify({search: nextMatch[0].codeClubAccueil})
-//   })
-//     .then((response) => response.json())
-//     .then((res) => {
-//       // console.log(res)
-//       console.log('RES.CLUBS', res.clubs[0]);
-//       if (res.clubs[0].code !== '60300117') {
-//         console.log('adversaire', res.clubs[0].nom)
-//         setAdversaire(adversaire => [...adversaire, {adversaire: res.clubs[0].nom, date: nextMatch[0].dateTheorique, equipe: id}])
-//         setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique}])
-//       }
-//       // setAdversaire(adversaire => [...adversaire, {adversaire: res.clubs[0].nom, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
-//       // if (nextMatch[0].equipe1.id === id) {
-//       //   console.log(nextMatch[0])
-
-//       //   // const club = se((nextMatch[0].equipe2.codeClub));
-//       //   // console.log('club', club)
-//       //   // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
-//       // }
-//       // if (nextMatch[0].equipe2.id === id) {
-//       //   // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe2.id, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
-//       // }
-//     })
-//   } else { console.log('tintin')}
-//   }
-    
-  
-//   });
-  
- 
-// }
-
+// it -m "ok"
   const getDatesByMonth = (id) => {
     fetch('https://gstennis.azurewebsites.net/api/agenda?codeClub=60300117&millesime=2023')
 

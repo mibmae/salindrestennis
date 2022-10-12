@@ -534,7 +534,7 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
                 </Card.Text>
                 <Card.Text>
                   <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
                   <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
                 </Card.Text>
               </Card.Body>
@@ -566,7 +566,7 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
                 </Card.Text>
                 <Card.Text>
                 <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
                   <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
                 </Card.Text>
               </Card.Body>
@@ -605,7 +605,7 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
                 </Card.Text>
                 <Card.Text>
                 <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
                   <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
                 </Card.Text>
               </Card.Body>
@@ -638,7 +638,7 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
                 </Card.Text>
                 <Card.Text>
                 <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
                   <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
                 </Card.Text>
               </Card.Body>
@@ -678,7 +678,7 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
                   })}</span>
                 </Card.Text>
                 <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
                   <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
 
               </Card.Body>
@@ -715,7 +715,7 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
                   })}</span>
                 </Card.Text>
                 <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="card_date">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
+                  <span className="capitaines">Prochain match: {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))}</span><br />
                   <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
               </Card.Body>
             </Card>

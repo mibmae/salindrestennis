@@ -478,3 +478,105 @@
     background-color: coral;
     color: white;
   }
+
+  .inputSearch {
+    margin-top: 1rem;
+    margin-left: 3rem;
+    border-bottom: 1px solid grey;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    display: none;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+
+      margin-left: 6rem;
+      padding: 0.2rem 2rem;
+      width: 53%;
+      font-size: small;
+    }
+  }
+
+  .loupe {
+    cursor: pointer;
+    position: absolute;
+    top: 1.6rem;
+    left: 1rem;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+      left: 6rem;
+    }
+  }
+
+  .resultats {
+    display: none;
+    position: absolute;
+    top: 4.4rem;
+    left: 0.5rem;
+    width: 20rem;
+    background-color: azure;
+    height: 17rem;
+    border-radius: 0 0 1rem 1rem;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    border: 1px solid #f56a6a;
+    overflow-y: auto;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+     width: 100%;
+     left: 0;
+    }
+    scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+  }
+
+  #resultats::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+  
+  #resultats::-webkit-scrollbar
+  {
+    width: 12px;
+    background-color: #F5F5F5;
+  }
+  
+  #resultats::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #F56A6A;
+  }
+
+  .itemsearch {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    padding: 1rem 0;
+    &:hover {
+      background-color: lightgrey;
+    }
+  }
+
+  .image_search {
+    width: 36px;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+      width: 60px;
+    }
+  }
+
+  .searchTitle {
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+      font-size: 16px;
+    }
+    font-size: 14px;
+  }
+
+  .loader_search {
+    position: absolute;
+    top: 8rem;
+    left: 6rem;
+    z-index: 9;
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+      left: 8rem;
+    }
+  }

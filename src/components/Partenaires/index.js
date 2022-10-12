@@ -34,7 +34,7 @@ function Partenaires() {
     <a href="https://innovation30.jimdo.com/" target="_blank"><img className="img_partenaire" src={innovation30} /></a>
     <a href="https://www.intersport.fr/" target="_blank"><img className="img_partenaire" src={intersport} /></a>
     <a href="https://www.immo-reseau.com/" target="_blank"><img className="img_partenaire" src={laurent} /></a>
-    {/* <a href="https://www.intersport.fr/" target="_blank"><img className="img_partenaire" src={technifibre} /></a> */}
+    <a href="https://www.tecnifibre.fr/" target="_blank"><img className="img_partenaire" src={technifibre} /></a>
     </div>
     <div className="logo2">
     <a href="https://www.gard.fr/" target="_blank"><img className="img_partenaire" src={logo30} /></a>
@@ -44,7 +44,7 @@ function Partenaires() {
     <a href="https://www.ales.fr/" target="_blank"><img className="img_partenaire" src={agglo} /></a>
         <img className="img_partenaire" src={logoprothese} />
         {/* <img className="img_partenaire" src={logoseat} /> */}
-    <a href="https://www.facebook.com/platine45radio/" target="_blank"><img className="img_partenaire" src={platine} /></a>
+    <a href="https://www.facebook.com/groups/210601767211872" target="_blank"><img className="img_partenaire" src={platine} /></a>
        
     <a href="https://www.yesss-fr.com/" target="_blank"><img className="img_partenaire" src={yesss} /></a>
     </div>

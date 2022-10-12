@@ -3,7 +3,7 @@ import './styles.scss';
 import Navbar from 'src/components/NavBar';
 import Logo from 'src/assets/images/logot.png';
 // import Link from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { StyledOffCanvas, Menu as Menue, Overlay } from 'styled-off-canvas';
 import {
   Menu,
@@ -14,15 +14,20 @@ import '@szhsin/react-menu/dist/index.css';
 import '@szhsin/react-menu/dist/transitions/slide.css';
 import store from 'src/store';
 import { FaFacebookF } from 'react-icons/fa';
-import { BsSnapchat, BsInstagram } from 'react-icons/bs';
+import { BsSnapchat, BsInstagram, BsSearch } from 'react-icons/bs';
+import { FcSearch } from 'react-icons/fc';
 import { BiDownArrow } from 'react-icons/bi';
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { generateUniqueKey } from 'src/functions';
+import { TailSpin, RotatingLines } from 'react-loader-spinner';
 
-import { slide as MenuD } from 'react-burger-menu';
 
 function Header() {
   const menuBtn = document.querySelector('.menu-btn');
   const [isOpen, setIsOpen] = useState(false);
+  const [searched, setSearched] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     // let menuOpen = false;
 
@@ -49,9 +54,9 @@ function Header() {
     console.log('resize');
   };
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize, false);
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize, false);
+  // }, []);
 
   const closeMenu = () => {
     setIsOpen(!isOpen);
@@ -59,12 +64,63 @@ function Header() {
     menuBtn.classList.remove('open');
   };
 
+  const afficheChamp = () => {
+    if (document.getElementById('inputSearch').style.display === 'flex') {
+      document.getElementById('inputSearch').value = ''
+      document.getElementById('inputSearch').style.display = 'none';
+      document.getElementById('resultats').style.display = 'none';
+    } else {
+    document.getElementById('inputSearch').style.display = 'flex';
+    }
+  }
+
+  const search = (e) => {
+    if (e.length > 2) {
+      setLoading(true);
+      fetch(`https://backtennis.herokuapp.com/search/${e}`, { 
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+    })
+    .then((response) => response.json())
+    // .then((res) => console.log(res.data))
+      .then((res) => setSearched(res.data));
+      document.getElementById('resultats').style.display = 'block'
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
+    } else {
+      document.getElementById('resultats').style.display = 'none'
+      
+
+    }
+  }
+
+  const reinit = () => {
+    document.getElementById('resultats').style.display = 'none'
+    document.getElementById('inputSearch').value = ''
+  }
+
+
   return (
     <div className="header">
       {/* <Navbar pageWrapId="page-wrap" outerContainerId="outer-container" /> */}
       <div className="header_container">
         {/* <div className="header_logo"> */}
         <img className="header_logo" src={Logo} alt="logo" />
+        <FcSearch className="loupe" onClick={afficheChamp} /><input type="text" className="inputSearch" id="inputSearch" placeholder='Chercher un article' onFocus={(e) => e.target.textContent = ''} onChange={(e) => search(e.target.value)} />
+        <div>
+      {(loading) ? (<div className="loader_search" key="loader">
+        <RotatingLines
+          strokeColor="#F56A6A"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="96"
+          visible={true} /><div className="chargement">Chargement ...</div></div>) : ('')}
+    </div>
+        <div className="resultats" id="resultats">{(searched.length > 0 ? (searched.map((e) => <Link key={generateUniqueKey(e)} className="link" to={`/article/${e.id}`}><div className="itemsearch" onClick={reinit}> <img src={e.image} className="image_search" /> - <span className="searchTitle">{e.titre}</span></div></Link>)) : (<span className="searchTitle"> Aucun résultat </span>))}</div>
         {/* </div> */}
         <nav className="menu">
           <Link to="/"><MenuButton className="myButton">Accueil</MenuButton></Link>

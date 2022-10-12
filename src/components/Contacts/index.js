@@ -24,7 +24,7 @@ function Contacts() {
             confirmButtonText: 'Ok',
           })
         } else {
-              fetch('http://localhost:3000/mail/', { 
+              fetch('https://backtennis.herokuapp.com/mail/', { 
             method: 'POST',
             body: JSON.stringify(datas),
             headers: {

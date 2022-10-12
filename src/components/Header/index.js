@@ -175,7 +175,7 @@ function Header() {
            </button> */}
           <Menue className="fond">
             {/* <img src={mylogo} alt="logo" className="logo_header_nav_img" /> */}
-            <img className="header_logo" src={Logo} alt="logo" />
+            <img className="header_logo_menu" src={Logo} alt="logo" />
             <ul className="rien menu_mob">
               <li>
                 <span className="titles">

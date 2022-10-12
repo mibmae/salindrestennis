@@ -20,6 +20,12 @@
     margin: 3rem auto 3rem;
     max-width: 64em;
     font-family: ABeeZee,sans-serif!important;
+
+    @media screen and (max-width: 700px) and (orientation: landscape) {
+       margin: 0;
+       padding: 1rem;
+    }
+
     @media screen and (max-width: 500px) and (orientation: portrait) {
 
     width: 100%;

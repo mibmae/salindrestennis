@@ -479,7 +479,7 @@
     color: white;
   }
 
-  .inputSearch {
+  #inputSearch {
     margin-top: 1rem;
     margin-left: 3rem;
     border-bottom: 1px solid grey;
@@ -487,13 +487,24 @@
     border-left: none;
     border-right: none;
     display: none;
-    @media screen and (max-width: 500px) and (orientation: portrait) {
+    @media screen and (width: 280px) and (orientation: landscape) {
+
+      margin-left: 8rem;
+      padding: 0.2rem 2rem;
+      width: 53%;
+      font-size: small;
+    }
+    @media screen and (max-width: 640px) and (orientation: portrait) {
 
       margin-left: 6rem;
       padding: 0.2rem 2rem;
       width: 53%;
       font-size: small;
     }
+    // @media screen and (max-height: 341px) and (max-width: 361px) and (orientation: portrait) {
+    //   margin-left: 6rem!important;
+    // }
+
   }
 
   .loupe {
@@ -502,6 +513,9 @@
     top: 1.6rem;
     left: 1rem;
     @media screen and (max-width: 500px) and (orientation: portrait) {
+      left: 6rem;
+    }
+    @media screen and (max-height: 280px) and (orientation: portrait) {
       left: 6rem;
     }
   }

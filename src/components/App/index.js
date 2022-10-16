@@ -26,6 +26,7 @@ import Login from 'src/components/Login';
 import Article from 'src/components/Article';
 import BandeauItem from 'src/components/BandeauItem';
 import Equipes from 'src/components/Equipes';
+import Resultats from 'src/components/Equipes/resultats';
 import { signinByToken, signinByTokenAdmin } from 'src/actions/';
 import reactLogo from './react-logo.svg';
 import './styles.css';
@@ -54,6 +55,7 @@ return (
    <Routes>
    <Route path="/" exact element={<><Header /><Bandeau /><News /><Main /><Objectifs /><Partenaires /><Footer /></>} />
    <Route path="/equipes" exact element={<><Header /><Bandeau /><Equipes /><Footer /></>} />
+   <Route path="/resultats" exact element={<><Header /><Bandeau /><Resultats /><Footer /></>} />
    <Route path="/tintin" exact element={<Counter />} />
    <Route path="/presentation" exact element={<><Header /><Bandeau /> <Presentation /><Partenaires /><Footer /></>} />
    <Route path="/historique" exact element={<><Header /> <Bandeau /><Historique /><Partenaires /><Footer /></>} />

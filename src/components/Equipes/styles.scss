@@ -87,13 +87,17 @@
     font-size: 1rem!important;
 }
 
+.jeunes {
+    height: 4rem!important;
+}
+
 .card-header {
     // background-color: #F56A6A!important;
     @media screen and (max-width: 500px) {
         background-color:burlywood!important;
     }
     background-color:darkseagreen!important;
-    height: 3rem;
+    height: 4rem;
     text-align: center;
     font-weight: 700;
     color: black;
@@ -245,3 +249,59 @@ color: green;
 //     transform-style: preserve-3d;
 //     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 //   }
+
+.valign {
+    vertical-align: 0.1rem;
+}
+
+.front {
+    :hover {
+            // transform: rotateY(180deg);
+            // -webkit-animation: retu 1s;
+            // animation: retu 1s;
+
+    }
+    // display: block!important;
+}
+
+.back {
+    display: none;
+}
+
+@-webkit-keyframes retu {
+    from { tranform: rotateY(0); }
+      to { transform: rotateY(180deg); }
+}
+@keyframes retu {
+    from { tranform: rotateY(0); }
+      to { transform: rotateY(180deg); }
+}
+
+.classementAf {
+    font-size: 12px;
+    // margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.classementAfc {
+    font-size: 12px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.classContain {
+    margin-top: -0.5rem;
+}
+
+.classementImg {
+    width: 40px;
+    height: 30px;
+    position: absolute;
+    top: 2.1rem;
+    right: 0;
+    cursor: pointer;
+    border-radius: 10px 0px 0px;
+    background-color: white;
+}

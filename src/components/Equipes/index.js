@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import { generateUniqueKey } from 'src/functions';
 import { IoMdArrowDropdown, IoIosMan, IoIosWoman } from 'react-icons/io';
 import { BsFillTrophyFill, BsHouseDoorFill  } from 'react-icons/bs';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { RiTeamFill } from 'react-icons/ri';
 import { FcCalendar } from 'react-icons/fc';
 import { FaRegHandSpock } from 'react-icons/fa';
@@ -57,6 +58,7 @@ const [dateMardiPro, setDateMardiPro] = useState([]);
 const [equipesInfosCompletes, setEquipesInfosCompletes] = useState([]);
 const [capitaines, setCapitaines] = useState([]);
 const [classement, setClassement] = useState([]);
+const [classementComplet, setClassementComplet] = useState([]);
 const [adversaire, setAdversaire] = useState([]);
   moment().locale('fr')
 
@@ -131,7 +133,6 @@ const [adversaire, setAdversaire] = useState([]);
             <div className="calendar_title" onClick={() => showHideProg('dimanche')}>{moment(dateDimanchePro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase().replace(/^./, moment(dateDimanchePro).locale('fr').format("dddd Do MMMM yyyy").toLowerCase()[0].toUpperCase())} ({matchDimanchePro.length})<IoMdArrowDropdown className="arrow" /></div>
           ) : ('')}
           <div className="daysOfMatch" id="dimanche">
-          {/* matchDimanchePro.filter((e) => e.homologation.sexe === 'F') */}
             {matchDimanchePro.filter((e) => e.homologation.sexe === 'F').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} - {f.isAtHome === true ? (<><BsHouseDoorFill /> {f.clubEquipe1Nom} VS {f.clubEquipe2Nom}</>) : (<><TbExternalLink /> {f.clubEquipe1Nom} VS {f.clubEquipe2Nom}</>)} </div>)}
             {matchDimanchePro.filter((e) => e.homologation.sexe === 'H').map((f) => <div key={generateUniqueKey(f)} className="programme_item">{f.homologation.libelle.toLowerCase().replace(/^./, f.homologation.libelle.toLowerCase()[0].toUpperCase())} - {f.isAtHome === true ? (<><BsHouseDoorFill /> {f.clubEquipe1Nom} VS {f.clubEquipe2Nom}</>) : (<><TbExternalLink /> {f.clubEquipe1Nom} VS {f.clubEquipe2Nom}</>)} </div>)}
           </div>
@@ -152,54 +153,54 @@ const getEquipes = () => {
       arrayEquipes.push({
         id: e.id,
         homologation: e.homologation.id,
-        division: e.division.id
+        division: e.division.id,
+        numEquipe: e.nom.substr(-1)
       })
-      // setEquipesInfosCompletes(equipesInfosCompletes => [...equipesInfosCompletes, arrayEquipes])
       setEquipesInfosCompletes(arrayEquipes)
     })
     res.femmes.map((e) => {
       arrayEquipes.push({
         id: e.id,
         homologation: e.homologation.id,
-        division: e.division.id
+        division: e.division.id,
+        numEquipe: e.nom.substr(-1)
       })
-      // setEquipesInfosCompletes(equipesInfosCompletes => [...equipesInfosCompletes, arrayEquipes])
       setEquipesInfosCompletes(arrayEquipes)
     })
     res.hommesPlus.map((e) => {
       arrayEquipes.push({
         id: e.id,
         homologation: e.homologation.id,
-        division: e.division.id
+        division: e.division.id,
+        numEquipe: e.nom.substr(-1)
       })
-      // setEquipesInfosCompletes(equipesInfosCompletes => [...equipesInfosCompletes, arrayEquipes])
       setEquipesInfosCompletes(arrayEquipes)
     })
     res.femmesPlus.map((e) => {
       arrayEquipes.push({
         id: e.id,
         homologation: e.homologation.id,
-        division: e.division.id
+        division: e.division.id,
+        numEquipe: e.nom.substr(-1)
       })
-      // setEquipesInfosCompletes(equipesInfosCompletes => [...equipesInfosCompletes, arrayEquipes])
       setEquipesInfosCompletes(arrayEquipes)
     })
     res.filles.map((e) => {
       arrayEquipes.push({
         id: e.id,
         homologation: e.homologation.id,
-        division: e.division.id
+        division: e.division.id,
+        numEquipe: e.nom.substr(-1)
       })
-      // setEquipesInfosCompletes(equipesInfosCompletes => [...equipesInfosCompletes, arrayEquipes])
       setEquipesInfosCompletes(arrayEquipes)
     })
     res.garcons.map((e) => {
       arrayEquipes.push({
         id: e.id,
         homologation: e.homologation.id,
-        division: e.division.id
+        division: e.division.id,
+        numEquipe: e.nom.substr(-1)
       })
-      // setEquipesInfosCompletes(equipesInfosCompletes => [...equipesInfosCompletes, arrayEquipes])
       setEquipesInfosCompletes(arrayEquipes)
     })
     
@@ -263,23 +264,7 @@ const getAgendawe = () => {
     })
   }
 
-  // const search = (code) => {
-  //   fetch(`https://gstennis.azurewebsites.net/api/search`, 
-  //   {
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     method: "POST",
-  //     body: JSON.stringify({search: code})
-  // })
-  //   .then((response) => response.json())
-  //   .then((res) => {
-  //     // console.log(res)
-  //     return res.clubs;
-  //   })
-  
-  // }
+
   function se(code, id) {
     fetch(`https://gstennis.azurewebsites.net/api/search`, 
   {
@@ -292,90 +277,35 @@ const getAgendawe = () => {
 })
   .then((response) => response.json())
   .then((res) => {
-    // console.log('res', res)
     setAdversaire(adversaire => [...adversaire, {id: id, equipe: res.clubs[0].nom}])
-    // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe2.id, date: nextMatch[0].dateTheorique}])
 
-    // console.log(id, res.clubs[0].nom);
   })
 }
 
-useEffect(() => {
- console.log('Adversaire', adversaire)
-}, [adversaire])
+
 
 
 const getProchainMatch = (id) => {
   fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=82328042&idDivision=115212`)
   .then((response => response.json()))
   .then((res) => {
-    // let thisWeekSaturday = moment().isoWeekday(6).format("DD/MM/YYYY");
-    const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isSameOrAfter(moment()))).filter((ppp) => moment(ppp.dateTheorique).isSameOrAfter(moment())).map((e) => e)
-    // console.log(nextMatch[0]);
+    const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isSameOrAfter(moment().startOf('day')))).map((e) => e)
     if (nextMatch[0] !== undefined) {
      
     if (nextMatch[0].equipe1.id === id) {
       se((nextMatch[0].equipe2.codeClub), id);
-      setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique}])
+        setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique, codeClubAccueil: nextMatch[0].codeClubAccueil}])
     }
     if (nextMatch[0].equipe2.id === id) {
-      setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe2.id, date: nextMatch[0].dateTheorique}])
       se((nextMatch[0].equipe1.codeClub), id);
+      setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe2.id, date: nextMatch[0].dateTheorique, codeClubAccueil: nextMatch[0].codeClubAccueil}])
     }
-//     const getProchainMatch = (id) => {
-//   fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=82328042&idDivision=115212`)
-//   .then((response => response.json()))
-//   .then((res) => {
-//     // let thisWeekSaturday = moment().isoWeekday(6).format("DD/MM/YYYY");
-//     const nextMatch = res.phases[0].rencontres.filter((equipe) => (equipe.equipe1.id === id || equipe.equipe2.id === id) && (moment(equipe.dateTheorique).isSameOrAfter(moment()))).filter((ppp) => moment(ppp.dateTheorique).isSameOrAfter(moment())).map((e) => e)
-//     console.log(nextMatch[0]);
-//     if (nextMatch[0] !== undefined) {
-//       if (nextMatch[0].equipe1.id !== id) {
-//       fetch(`https://gstennis.azurewebsites.net/api/search`, 
-//     {
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       method: "POST",
-//       body: JSON.stringify({search: nextMatch[0].codeClubAccueil})
-//   })
-//     .then((response) => response.json())
-//     .then((res) => {
-//       // console.log(res)
-//       console.log('RES.CLUBS', res.clubs[0]);
-//       if (res.clubs[0].code !== '60300117') {
-//         console.log('adversaire', res.clubs[0].nom)
-//         // setAdversaire(adversaire => [...adversaire, {adversaire: res.clubs[0].nom, date: nextMatch[0].dateTheorique, equipe: id}])
-//         setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique}])
-//       }
-//       // setAdversaire(adversaire => [...adversaire, {adversaire: res.clubs[0].nom, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
-//       // if (nextMatch[0].equipe1.id === id) {
-//       //   console.log(nextMatch[0])
-
-//       //   // const club = se((nextMatch[0].equipe2.codeClub));
-//       //   // console.log('club', club)
-//       //   // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe1.id, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
-//       // }
-//       // if (nextMatch[0].equipe2.id === id) {
-//       //   // setProchainMatch(prochainMatch => [...prochainMatch, {id: nextMatch[0].equipe2.id, date: nextMatch[0].dateTheorique, adversaire: club[0].nom}])
-//       // }
-//     })
-//   } else { console.log('tintin')}
-//   }
-    
-  
-//   });
-  
- 
-// }
   }
   });
   
  
 }
 
-// it -m "ok"
   const getDatesByMonth = (id) => {
     fetch('https://gstennis.azurewebsites.net/api/agenda?codeClub=60300117&millesime=2023')
 
@@ -414,9 +344,10 @@ const getProchainMatch = (id) => {
     fetch(`https://gstennis.azurewebsites.net/api/equipe?idEquipe=${id}&idHomologation=${homologation}&idDivision=${division}`)
   .then((response) => response.json())
   .then((res) => {
-    // console.log(res)
-res.phases[0].detailsEquipes.filter((capitaine) => capitaine.idEquipe === id).map((nom) => setCapitaines(capitaines => [...capitaines, {idEquipe: nom.idEquipe, capitaine: nom.correspondant.nom.substr(5)}]))
-res.phases[0].classements.filter((classement) => classement.nom.includes('SALINDRES')).map((e) => setClassement(classement => [...classement, {id: id, classement: e.place}]))
+res.phases[0].detailsEquipes.filter((capitaine) => capitaine.idEquipe === id).map((nom) => setCapitaines(capitaines => [...capitaines, {idEquipe: nom.idEquipe, numeroEquipe: nom.numero, capitaine: nom.correspondant.nom.substr(5)}]))
+res.phases[0].classements.filter((classement) => classement.nom.includes('SALINDRES')).map((e) => setClassement(classement => [...classement, {id: id, idEquipe: e.nom.substr(-1), classement: e.place}]))
+
+setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, classement: res.phases[0].classements}])
 })
   }
 
@@ -426,7 +357,11 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
   useEffect(() => {
   }, [prochainMatch])
   useEffect(() => {
+  }, [adversaire])
+  useEffect(() => {
   }, [capitaines])
+  useEffect(() => {
+  }, [classement])
   useEffect(() => {
     // setTimeout(() => {
       document.getElementById('footer').style.display = 'none'
@@ -459,16 +394,11 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
   }, [idEquipes]);
   useEffect(() => {
   }, [matchDimanchePro])
+  useEffect(() => {
+  }, [classementComplet])
   
   const showHide = (id, title) => {
     const fleche = document.getElementById(id + "A");
-    // if (fleche.style.transform === "rotate(0deg)") {
-    // fleche.style.transform = "rotate(180deg)";
-    // }
-    // if (fleche.style.transform === "rotate(180deg)") {
-    //   fleche.style.transform = "rotate(0deg)";
-
-    // }
     
      if (document.getElementById(id).style.display === 'flex') {
       document.getElementById(id).style.display = 'none';
@@ -496,7 +426,73 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
     }
   }
 
+  const flipCard = (id) => {
+    const front = document.getElementById(id + "front");
+    const back = document.getElementById(id + "back")
+
+    if (front.style.display === "block") {
+    front.style.display = "none"
+    back.style.display = "block"
+    } else {
+      front.style.display = "block"
+      back.style.display = "none"
   
+    }
+    
+  }
+
+  const afficheEquipe = (e) => {
+  
+  return (
+    <Card id="flip-card" className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '20rem', margin: '0 auto' }} onClick={(r) => flipCard(e.id)}>
+    <div id={e.id + "front"} key={generateUniqueKey(e)} className="front" style={{ display: 'block'}}>
+    <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}
+    <img src="https://ja-drancy.com/wp-content/uploads/2020/01/classement.jpg" className="classementImg" title="Voir le classement" alt="Voir le classement"/>
+    </Card.Header>
+    <Card.Body>
+      <span className="card_date" key={generateUniqueKey(e)}>{e.nom}</span>
+      <Card.Text>
+        <span key={generateUniqueKey(e)}>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
+      </Card.Text>
+      <Card.Text>
+        <span key={generateUniqueKey(e)} className="res">{e.phases[0].rencontres.map(function (e) {
+          if (e === 'V') {
+            return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
+          }
+          if (e === 'D') {
+            return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
+          }
+          if (e === 'N') {
+            return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
+          }
+          if (e === null) {
+            return '- ';
+          }
+        })}</span>
+      </Card.Text>
+      <Card.Text>
+      <span key={generateUniqueKey(e)} className="card_date">Classement: {classement.filter((d) => d.id === e.id && d.idEquipe === e.nom.substr(-1)).map((e) => (e.classement !== 0) ? (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')) : ('NC'))}</span><br />
+        <span key={generateUniqueKey(e)} className="capitaines"><FcNext /> {prochainMatch.filter((d) => d.id === e.id).map((e) => (<><span key={generateUniqueKey(e)}>{moment(e.date).format("DD/MM/YYYY")}</span> <span key={generateUniqueKey(e)} className="valign">{e.codeClubAccueil === "60300117" ? (<BsHouseDoorFill />) : (<TbExternalLink />)}</span></>))} : {adversaire.filter((d) => d.id === e.id).map((e) => e.equipe)}</span><br />
+        <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => <span key={generateUniqueKey(e)}>{d.capitaine} {d.numeroEquipe}</span>)} </span><br />
+      </Card.Text>
+    </Card.Body>
+    </div>
+    <div id={e.id + "back"} key={generateUniqueKey(e)} className="back">
+    <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}
+   <img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/44359/back-arrow-emoji-clipart-xl.png" className='classementImg'/>
+    </Card.Header>
+    <Card.Body>
+      <div key={generateUniqueKey(e)} className="classContain">
+      <div key={generateUniqueKey(e)} className="classementAfc">Rang<div key={generateUniqueKey(e)} className="pts">Points</div></div>
+
+      {classementComplet.filter((g) => g.idEquipe === e.id).map((f) => f.classement.map((d) => <div  className="classementAf" key={generateUniqueKey(d)}>{d.place} - {d.nom}<div key={generateUniqueKey(d)} className="pts">{d.points}</div></div>))}
+      </div>
+      {/* {classementComplet.filter((d) => d.idEquipe === e.id).map((e) => (<><span>{e.classement.map((t) => t.nom)}</span> </>))}  */}
+         </Card.Body>
+    </div>
+  </Card>
+  )
+      }
 
   return (
     <><div>
@@ -513,184 +509,35 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
         {/* Equipes Femmes */}
 
         {(equipesF.length > 0) ? (
-          <div className="equipes_title" id='titleFemme' onClick={() => showHide('efemme', 'titleFemme')}><IoIosWoman />Equipes Femmes : ({nbEquipesF}) <IoMdArrowDropdown id='efemmeA' className="arrow" /></div>
+          <div key={generateUniqueKey(equipesF)} className="equipes_title" id='titleFemme' onClick={() => showHide('efemme', 'titleFemme')}><IoIosWoman />Equipes Femmes : ({nbEquipesF}) <IoMdArrowDropdown id='efemmeA' className="arrow" /></div>
         ) : ('')}
         <div id="efemme" className="equipes_list">
           {(equipesF.length > 0 ? equipesF.map((e) => (
-            <Card id="flip-card" className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '19rem', margin: '0 auto' }}>
-              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-              <Card.Body>
-                <span className="card_date">{e.nom}</span>
-                <Card.Text>
-                  <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
-                </Card.Text>
-                <Card.Text>
-                  <span className="res">{e.phases[0].rencontres.map(function (e) {
-                    if (e === 'V') {
-                      return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
-                    }
-                    if (e === 'D') {
-                      return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
-                    }
-                    if (e === 'N') {
-                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-                    }
-                    if (e === null) {
-                      return '- ';
-                    }
-                  })}</span>
-                </Card.Text>
-                <Card.Text>
-                  <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="capitaines"><FcNext /> {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))} : {adversaire.filter((d) => d.id === e.id).map((e) => e.equipe)}</span><br />
-                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
-                </Card.Text>
-              </Card.Body>
-            </Card>
+           afficheEquipe(e)
           )) : '')}
           {(equipesFplus.length > 0 ? equipesFplus.map((e) => (
-            <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '19rem', margin: '0 auto' }}>
-              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-              <Card.Body>
-                <span className="card_date">{e.nom}</span>
-                <Card.Text>
-                  <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
-                </Card.Text>
-                <Card.Text>
-                  <span className="res">{e.phases[0].rencontres.map(function (e) {
-                    if (e === 'V') {
-                      return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
-                    }
-                    if (e === 'D') {
-                      return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
-                    }
-                    if (e === 'N') {
-                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-                    }
-                    if (e === null) {
-                      return '- ';
-                    }
-                  })}</span>
-                </Card.Text>
-                <Card.Text>
-                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="capitaines"><FcNext /> {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))} : {adversaire.filter((d) => d.id === e.id).map((e) => e.equipe)}</span><br />
-                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
-                </Card.Text>
-              </Card.Body>
-            </Card>
+    afficheEquipe(e)
           )) : '')}
         </div>
 
         {/* EQUIPE HOMMES */}
         {(equipesH.length > 0) ? (
-          <div className="equipes_title" id='titleHomme' onClick={() => showHide('ehomme', 'titleHomme')}><IoIosMan />Equipes Hommes : ({nbEquipesH}) <IoMdArrowDropdown id='ehommeA' className="arrow" /> </div>
+          <div key={generateUniqueKey(equipesH)} className="equipes_title" id='titleHomme' onClick={() => showHide('ehomme', 'titleHomme')}><IoIosMan />Equipes Hommes : ({nbEquipesH}) <IoMdArrowDropdown id='ehommeA' className="arrow" /> </div>
         ) : ('')}
         <div id="ehomme" className="equipes_list">
           {(equipesH.length > 0 ? equipesH.map((e) => (
-            <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '19rem', margin: '0 auto' }}>
-              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase()).substr(0, 22)}</Card.Header>
-              <Card.Body>
-                <span className="card_date">{e.nom}</span>
-                <Card.Text>
-                  <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
-                </Card.Text>
-                <Card.Text>
-                  <span className="res">{e.phases[0].rencontres.map(function (e) {
-                    if (e === 'V') {
-                      return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
-                    }
-                    if (e === 'N') {
-                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-                    }
-                    if (e === 'D') {
-                      return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
-                    }
-                    if (e === null) {
-                      return '- ';
-                    }
-                  })}</span>
-                </Card.Text>
-                <Card.Text>
-                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="capitaines"><FcNext /> {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))} : {adversaire.filter((d) => d.id === e.id).map((e) => e.equipe)}</span><br />
-                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            afficheEquipe(e)
           )) : '')}
           {(equipesHplus.length > 0 ? equipesHplus.map((e) => (
-            <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '19rem', margin: '0 auto' }}>
-              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-              <Card.Body>
-                <span className="card_date">{e.nom}</span>
-                <Card.Text>
-                  <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
-                </Card.Text>
-                <Card.Text>
-                  <span className="res">{e.phases[0].rencontres.map(function (e) {
-                    if (e === 'V') {
-                      return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
-                    }
-                    if (e === 'N') {
-                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-                    }
-                    if (e === 'D') {
-                      return <ImCross key={generateUniqueKey(e)} className="spaceafter_d" />;
-                    }
-                    if (e === null) {
-                      return '- ';
-                    }
-                      return e;
-                  })}</span>
-                </Card.Text>
-                <Card.Text>
-                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="capitaines"><FcNext /> {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))} : {adversaire.filter((d) => d.id === e.id).map((e) => e.equipe)}</span><br />
-                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            afficheEquipe(e)
           )) : '')}
         </div>
-
-
 
                   {/* Equipes Filles */}
         <div className="equipes_title" id="titleFille" onClick={() => showHide('efille', 'titleFille')}><IoIosMan />Equipes Filles : ({nbEquipesFilles}) <IoMdArrowDropdown id='efilleA' className="arrow" /> </div>
         <div id="efille" className="equipes_list">
           {(equipesFille.length > 0 ? equipesFille.map((e) => (
-            <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '19rem', margin: '0 auto' }}>
-              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-              <Card.Body>
-                <span className="card_date">{e.nom}</span>
-                <Card.Text>
-                  <span>{e.phases[0].phase.phase.libelle}</span>
-                </Card.Text>
-                <Card.Text>
-                  <span className="res">{e.phases[0].rencontres.map(function (e) {
-                    if (e === 'V') {
-                      return <BsFillTrophyFill className="spaceafter_v" />;
-                    }
-                    if (e === 'D') {
-                      return <ImCross className="spaceafter_d" />;
-                    }
-
-                    if (e === 'N') {
-                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-                    }    
-                    if (e === null) {
-                      return '- ';
-                    }
-
-                  })}</span>
-                </Card.Text>
-                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="capitaines"><FcNext /> {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))} : {adversaire.filter((d) => d.id === e.id).map((e) => e.equipe)}</span><br />
-                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
-
-              </Card.Body>
-            </Card>
+            afficheEquipe(e)
           )) : '')}
 
         </div>
@@ -698,35 +545,7 @@ res.phases[0].classements.filter((classement) => classement.nom.includes('SALIND
         <div className="equipes_title" id='titleGarcon' onClick={() => showHide('egarcon', 'titleGarcon')}><IoIosMan />Equipes Garçons : ({nbEquipesGarcon}) <IoMdArrowDropdown id='egarconA' className="arrow" /> </div>
         <div id="egarcon" className="equipes_list">
           {(equipesGarcon.length > 0 ? equipesGarcon.map((e) => (
-            <Card className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '19rem', margin: '0 auto' }}>
-              <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}</Card.Header>
-              <Card.Body>
-                <span className="card_date">{e.nom}</span>
-                <Card.Text>
-                  <span>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
-                </Card.Text>
-                <Card.Text>
-                  <span className="res">{e.phases[0].rencontres.map(function (e) {
-                    if (e === 'V') {
-                      return <BsFillTrophyFill className="spaceafter_v" />;
-                    }
-                    if (e === 'D') {
-                      return <ImCross className="spaceafter_d" />;
-                    }
-                    if (e === 'N') {
-                      return <FaRegHandSpock key={generateUniqueKey(e)} className="spaceafter_n" />
-                    }
-                    if (e === null) {
-                      return '- ';
-                    }
-
-                  })}</span>
-                </Card.Text>
-                <span className="card_date">Classement: {classement.filter((d) => d.id === e.id).map((e) => (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')))}</span><br />
-                  <span className="capitaines"><FcNext /> {prochainMatch.filter((d) => d.id === e.id).map((e) => moment(e.date).format("DD/MM/YYYY"))} : {adversaire.filter((d) => d.id === e.id).map((e) => e.equipe)}</span><br />
-                  <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => d.capitaine)} </span><br />
-              </Card.Body>
-            </Card>
+           afficheEquipe(e)
           )) : '')}
         </div>
         {displayProgSemaine()}

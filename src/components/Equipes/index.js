@@ -444,10 +444,10 @@ setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, 
   const afficheEquipe = (e) => {
   
   return (
-    <Card id="flip-card" className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '20rem', margin: '0 auto' }} onClick={(r) => flipCard(e.id)}>
+    <Card id="flip-card" className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '20rem', margin: '0 auto' }}>
     <div id={e.id + "front"} key={generateUniqueKey(e)} className="front" style={{ display: 'block'}}>
     <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}
-    <img src="https://ja-drancy.com/wp-content/uploads/2020/01/classement.jpg" className="classementImg" title="Voir le classement" alt="Voir le classement"/>
+    <img src="https://ja-drancy.com/wp-content/uploads/2020/01/classement.jpg" className="classementImg" title="Voir le classement" alt="Voir le classement" onClick={(r) => flipCard(e.id)}/>
     </Card.Header>
     <Card.Body>
       <span className="card_date" key={generateUniqueKey(e)}>{e.nom}</span>
@@ -479,7 +479,7 @@ setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, 
     </div>
     <div id={e.id + "back"} key={generateUniqueKey(e)} className="back">
     <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}
-   <img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/44359/back-arrow-emoji-clipart-xl.png" className='classementImg'/>
+   <img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/44359/back-arrow-emoji-clipart-xl.png" className='classementImg' onClick={(r) => flipCard(e.id)}/>
     </Card.Header>
     <Card.Body>
       <div key={generateUniqueKey(e)} className="classContain">

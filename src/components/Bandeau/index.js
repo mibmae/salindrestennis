@@ -88,8 +88,7 @@ function Bandeau() {
                 key={generateUniqueKey(e)}
                 style={{
                   backgroundImage: `url(${e.image})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
+                  
                 }}
               >
                 <div className="bandeau_text_title" key={generateUniqueKey(e)}>{e.date} - {e.titre}</div>

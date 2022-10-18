@@ -109,7 +109,7 @@ function Header() {
       {/* <Navbar pageWrapId="page-wrap" outerContainerId="outer-container" /> */}
       <div className="header_container">
         {/* <div className="header_logo"> */}
-        <img className="header_logo" src={Logo} alt="logo" />
+        <Link to="/"><img className="header_logo" src={Logo} alt="logo" /></Link>
         <FcSearch className="loupe" onClick={afficheChamp} /><input type="text" className="inputSearch" id="inputSearch" placeholder='Chercher un article' onFocus={(e) => e.target.textContent = ''} onChange={(e) => search(e.target.value)} />
         <div>
       {(loading) ? (<div className="loader_search" key="loader">

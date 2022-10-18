@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import Card from 'react-bootstrap/Card';
 import { generateUniqueKey } from 'src/functions';
+import Swal from 'sweetalert2';
+
 import { IoMdArrowDropdown, IoIosMan, IoIosWoman } from 'react-icons/io';
 import { BsFillTrophyFill, BsHouseDoorFill  } from 'react-icons/bs';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
@@ -60,7 +62,68 @@ const [capitaines, setCapitaines] = useState([]);
 const [classement, setClassement] = useState([]);
 const [classementComplet, setClassementComplet] = useState([]);
 const [adversaire, setAdversaire] = useState([]);
+const [codeClub, setCodeClub] = useState(60300117);
+const [optionsClub, setOptionsClub] = useState([]);
   moment().locale('fr')
+  // const codeClub = 60300117;
+  // const codeClub = 60300701;
+
+
+  useEffect(() => {
+  }, [optionsClub])
+  
+
+  function search(code) {
+    setOptionsClub([])
+    setCapitaines([])
+    setProchainMatch([])
+    setClassement([])
+    setAdversaire([])
+    fetch(`https://gstennis.azurewebsites.net/api/search`, 
+  {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify({search: code})
+})
+  .then((response) => response.json())
+  .then((res) => {
+    // document.getElementsByTagName('datalist')[0].style.display = 'flex';
+    if (document.getElementById('dlist')) {
+    document.getElementById('dlist').style.display = 'flex';
+    }
+    if(res.clubs !== undefined) {
+    setOptionsClub(res.clubs)
+    }
+  })
+}
+
+
+  useEffect(() => {
+    setOptionsClub([])
+    setCapitaines([])
+    setProchainMatch([])
+    setClassement([])
+    setAdversaire([])
+    search(codeClub.toString())
+    document.getElementById('footer').style.display = 'none'
+    getAgendawe();
+    getAgenda();
+    getEquipes();
+    setTimeout(() => {
+    const arrows = document.getElementsByClassName('arrow');
+    for (let i = 0; i < arrows.length; i++) {
+      arrows[i].style.transform = "rotate(0deg)"
+    }
+  }, 2000);
+  // getDatesByMonth(9)
+  document.getElementById('equipes').style.display = 'none'
+  displayProgSemaine()
+  
+  }, [codeClub])
+  
 
   const exportProg = useCallback(() => {
     document.getElementById('exp').display = 'none';
@@ -145,7 +208,7 @@ const [adversaire, setAdversaire] = useState([]);
 
 const getEquipes = () => {
     setLoading(true);
-  fetch('https://gstennis.azurewebsites.net/api/equipes?codeClub=60300117&millesime=2023')
+  fetch(`https://gstennis.azurewebsites.net/api/equipes?codeClub=${codeClub}&millesime=2023`)
   .then((response) => response.json())
   .then((res) => {
     let arrayEquipes = [];
@@ -232,39 +295,60 @@ const getEquipes = () => {
     setEquipeGarcon(res.garcons)
     setTimeout(() => document.getElementById('footer').style.display = 'block', 2500)
     setTimeout(() => document.getElementById('equipes').style.display = 'block', 2500)
-    setTimeout(() => setLoading(false), 2800)
+    setTimeout(() => setLoading(false), 3500)
   })
 }
 
 const getAgenda = () => {
-    fetch('https://gstennis.azurewebsites.net/api/agenda?codeClub=60300117&millesime=2023')
+    fetch(`https://gstennis.azurewebsites.net/api/agenda?codeClub=${codeClub}&millesime=2023`)
     .then((response) => response.json())
     .then((res) => {
       const resultats = res.filter((item) => new Date(item.date).getMonth() === new Date().getMonth());
       setAgenda(resultats[0].agendaDays)
     })
+    .catch((error) => 
+    Swal.fire({
+      title: 'Code Club Non Valide !',
+      text: "Le code du club demandé n'est pas valide",
+      icon: 'error',
+      confirmButtonText: 'Ok',
+    })
+    )
   }
 const getAgendawe = () => {
-    fetch('https://gstennis.azurewebsites.net/api/agenda?codeClub=60300117&millesime=2023')
+  setMatchDimanchePro([]);
+  setMatchLundiPro([]);
+  setMatchSamediPro([]);
+  setMatchMardiPro([]);
+    fetch(`https://gstennis.azurewebsites.net/api/agenda?codeClub=${codeClub}&millesime=2023`)
     .then((response) => response.json())
     .then((res) => {
       const resultatsMonth = res.filter((item) => new Date(item.date).getMonth() === new Date().getMonth());
       const samedi = resultatsMonth[0].agendaDays.filter((match => (moment(match.date).format("DD/MM/YYYY") === moment().isoWeekday(6).format("DD/MM/YYYY"))))
+      if(samedi[0] !== undefined) {
       setDateSamediPro(samedi[0].date)
       setMatchSamediPro(samedi[0].agendaItems);
+      }
       const dimanche = resultatsMonth[0].agendaDays.filter((match => (moment(match.date).format("DD/MM/YYYY") === moment().isoWeekday(7).format("DD/MM/YYYY"))))
+      if (dimanche[0] !== undefined) {
       setDateDimanchePro(dimanche[0].date)
       setMatchDimanchePro(dimanche[0].agendaItems);
+      }
       const lundi = resultatsMonth[0].agendaDays.filter((match => (moment(match.date).format("DD/MM/YYYY") === moment().isoWeekday(1).format("DD/MM/YYYY"))))
+      if (lundi[0] !== undefined) {
       setDateLundiPro(lundi[0].date)
       setMatchLundiPro(lundi[0].agendaItems);
+      }
       const mardi = resultatsMonth[0].agendaDays.filter((match => (moment(match.date).format("DD/MM/YYYY") === moment().isoWeekday(2).format("DD/MM/YYYY"))))
+      if (mardi[0] !== undefined) {
       setDateMardiPro(mardi[0].date)
       setMatchMardiPro(mardi[0].agendaItems);
+      }
     })
   }
 
 
+  
   function se(code, id) {
     fetch(`https://gstennis.azurewebsites.net/api/search`, 
   {
@@ -281,7 +365,6 @@ const getAgendawe = () => {
 
   })
 }
-
 
 
 
@@ -362,22 +445,7 @@ setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, 
   }, [capitaines])
   useEffect(() => {
   }, [classement])
-  useEffect(() => {
-    // setTimeout(() => {
-      document.getElementById('footer').style.display = 'none'
-      getAgendawe();
-      getAgenda();
-      getEquipes();
-      setTimeout(() => {
-      const arrows = document.getElementsByClassName('arrow');
-      for (let i = 0; i < arrows.length; i++) {
-        arrows[i].style.transform = "rotate(0deg)"
-      }
-    }, 2000);
-    // getDatesByMonth(9)
-    document.getElementById('equipes').style.display = 'none'
-    // search(60300125);
-  }, []);
+  
   useEffect(() => {
     setNbequipesF(equipesF.length + equipesFplus.length)
     setNbequipesH(equipesH.length + equipesHplus.length)
@@ -446,15 +514,15 @@ setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, 
   return (
     <Card id="flip-card" className="shadow" key={generateUniqueKey(e)} style={{ width: '18rem', height: '20rem', margin: '0 auto' }}>
     <div id={e.id + "front"} key={generateUniqueKey(e)} className="front" style={{ display: 'block'}}>
-    <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}
+    <Card.Header key={generateUniqueKey(e)} className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}
     <img src="https://ja-drancy.com/wp-content/uploads/2020/01/classement.jpg" className="classementImg" title="Voir le classement" alt="Voir le classement" onClick={(r) => flipCard(e.id)}/>
     </Card.Header>
     <Card.Body>
       <span className="card_date" key={generateUniqueKey(e)}>{e.nom}</span>
-      <Card.Text>
+      <Card.Text key={generateUniqueKey(e)}>
         <span key={generateUniqueKey(e)}>{e.phases[0].phase.phase.libelle.toLowerCase().replace(/^./, e.phases[0].phase.phase.libelle.toLowerCase()[0].toUpperCase())}</span>
       </Card.Text>
-      <Card.Text>
+      <Card.Text key={generateUniqueKey(e)}>
         <span key={generateUniqueKey(e)} className="res">{e.phases[0].rencontres.map(function (e) {
           if (e === 'V') {
             return <BsFillTrophyFill key={generateUniqueKey(e)} className="spaceafter_v" />;
@@ -470,22 +538,22 @@ setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, 
           }
         })}</span>
       </Card.Text>
-      <Card.Text>
+      <Card.Text key={generateUniqueKey(e)}>
       <span key={generateUniqueKey(e)} className="card_date">Classement: {classement.filter((d) => d.id === e.id && d.idEquipe === e.nom.substr(-1)).map((e) => (e.classement !== 0) ? (e.classement === 1 ? (e.classement + 'er') : (e.classement + ' ème')) : ('NC'))}</span><br />
         <span key={generateUniqueKey(e)} className="capitaines"><FcNext /> {prochainMatch.filter((d) => d.id === e.id).map((e) => (<><span key={generateUniqueKey(e)}>{moment(e.date).format("DD/MM/YYYY")}</span> <span key={generateUniqueKey(e)} className="valign">{e.codeClubAccueil === "60300117" ? (<BsHouseDoorFill />) : (<TbExternalLink />)}</span></>))} : {adversaire.filter((d) => d.id === e.id).map((e) => e.equipe)}</span><br />
-        <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => <span key={generateUniqueKey(e)}>{d.capitaine} {d.numeroEquipe}</span>)} </span><br />
+        <span className="capitaines" key={generateUniqueKey(e)}>Capitaine: {capitaines.filter((f) => f.idEquipe === e.id).map((d) => <span key={generateUniqueKey(e)}>{d.capitaine}</span>)} </span><br />
       </Card.Text>
     </Card.Body>
     </div>
     <div id={e.id + "back"} key={generateUniqueKey(e)} className="back">
-    <Card.Header className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}
+    <Card.Header key={generateUniqueKey(e)} className="card-header_equipes">{e.homologation.libelle.toLowerCase().replace(/^./, e.homologation.libelle.toLowerCase()[0].toUpperCase())}
    <img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/44359/back-arrow-emoji-clipart-xl.png" className='classementImg' onClick={(r) => flipCard(e.id)}/>
     </Card.Header>
-    <Card.Body>
+    <Card.Body key={generateUniqueKey(e)}>
       <div key={generateUniqueKey(e)} className="classContain">
       <div key={generateUniqueKey(e)} className="classementAfc">Rang<div key={generateUniqueKey(e)} className="pts">Points</div></div>
 
-      {classementComplet.filter((g) => g.idEquipe === e.id).map((f) => f.classement.map((d) => <div  className="classementAf" key={generateUniqueKey(d)}>{d.place} - {d.nom}<div key={generateUniqueKey(d)} className="pts">{d.points}</div></div>))}
+      {classementComplet.filter((g) => g.idEquipe === e.id).map((f) => f.classement.map((d) => <div  className="classementAf" key={generateUniqueKey(d)}>{d.place} - {d.nom.includes('SALINDRES') ? (<span className="home">{d.nom}</span>) : (d.nom)}<div key={generateUniqueKey(d)} className="pts">{d.points}</div></div>))}
       </div>
       {/* {classementComplet.filter((d) => d.idEquipe === e.id).map((e) => (<><span>{e.classement.map((t) => t.nom)}</span> </>))}  */}
          </Card.Body>
@@ -503,8 +571,25 @@ setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, 
           animationDuration="0.75"
           width="96"
           visible={true} /><div className="chargement">Chargement ...</div></div>) : ('')}
-    </div><div className="equipes" id="equipes">
-        <div className="matchofweek"><RiTeamFill /> Nos équipes engagées en championnat </div>
+    </div>
+    <div className="equipes" id="equipes">
+        <div className="matchofweek"><RiTeamFill /> Nos équipes engagées en championnat 
+        {(store.getState().Tennis.logged === true) && (
+
+          <><div className="codeClub"><input type="text" list='dlist' className="input_club" placeholder='Entrez le code Club' id='codclub' onChange={(e) => search(e.target.value)} /><div id="dlist" className="city_datalist">
+              {optionsClub.length >= 1 && optionsClub.map((club) => (
+                <option
+                  className="option"
+                  value={`${club.nom}`}
+                  key={generateUniqueKey(club)}
+                  onClick={(e) => setCodeClub(club.code)}
+                > {`${club.nom}`}
+                </option>
+              ))}
+            </div>
+        
+        </div></>)} 
+        </div>
 
         {/* Equipes Femmes */}
 
@@ -534,7 +619,9 @@ setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, 
         </div>
 
                   {/* Equipes Filles */}
+        {(equipesFille.length > 0) ? (
         <div className="equipes_title" id="titleFille" onClick={() => showHide('efille', 'titleFille')}><IoIosMan />Equipes Filles : ({nbEquipesFilles}) <IoMdArrowDropdown id='efilleA' className="arrow" /> </div>
+        ) : ('')}
         <div id="efille" className="equipes_list">
           {(equipesFille.length > 0 ? equipesFille.map((e) => (
             afficheEquipe(e)
@@ -542,7 +629,9 @@ setClassementComplet(classementComplet => [...classementComplet, {idEquipe: id, 
 
         </div>
                   {/* Equipe Garçons */}
+        {(equipesGarcon.length > 0) ? (
         <div className="equipes_title" id='titleGarcon' onClick={() => showHide('egarcon', 'titleGarcon')}><IoIosMan />Equipes Garçons : ({nbEquipesGarcon}) <IoMdArrowDropdown id='egarconA' className="arrow" /> </div>
+        ) : ('')}
         <div id="egarcon" className="equipes_list">
           {(equipesGarcon.length > 0 ? equipesGarcon.map((e) => (
            afficheEquipe(e)

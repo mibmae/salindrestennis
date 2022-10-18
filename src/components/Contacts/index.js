@@ -10,7 +10,7 @@ import "react-client-captcha/dist/index.css"
 function Contacts() {
     const [captchaCode, setCaptchaCode] = useState('');
     const formLogin = useRef(null);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm(); 
 
     const submitMail = () => {
         const forma = document.getElementById('contact');

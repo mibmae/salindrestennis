@@ -59,29 +59,22 @@ import React, {
       };
 
     useEffect(() => {
+      if (store.getState().Tennis.logged === true) {
+        navigate('/admin');
+      }
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
     }, []);
   
-    // useEffect(() => {
-    //   if (store.getState().jobsilog.logged === true) {
-    //     navigate('/account');
-    //   }
-    // }, [store.getState().jobsilog.logged]);
-    // useEffect(() => {
-    //   if (store.getState().jobsilog.admin === true) {
-    //     navigate('/admin');
-    //   }
-    // }, [store.getState().jobsilog.admin]);
   
     return (
         <>
         {store.getState().Tennis.logged === false ? (
 
-        <form className="form_login" onSubmit={handleSubmit(ident)} ref={formLogin} id="login_form">
-        <h1 className="white">Admin Login</h1>
+        <form onSubmit={handleSubmit(ident)} ref={formLogin} id="login_form">
+        {/* <h1 className="white">Admin Login</h1>
         <div className="inset">
         <p>
           <label className="label_login" htmlFor="email">EMAIL</label>
@@ -91,17 +84,24 @@ import React, {
           <label className="label_login" htmlFor="password">MOT DE PASSE</label>
           <input type="password" className="login_input" name="password" id="password" autoComplete='true' />
         </p>
-        {/* <p>
-          <input type="checkbox" name="remember" id="remember" />
-          <label for="remember">Remember me for 14 days</label>
-        </p> */}
+        
         </div>
         <p className="p-container">
-          {/* <span>Forgot password ?</span> */}
           <input type="submit" name="go" id="go" value="Log in" />
-        </p>
+        </p> */}
+        <h1 className="col-2-small title_section_login">Admin Login</h1>
+        <div class="form-field">
+    <input type="text" name="email" id="email" placeholder="Nom d'utilisateur"/>
+  </div>
+  
+  <div class="form-field">
+    <input type="password" name="password" id="password" placeholder="Mot de passe" required/>                         </div>
+  
+  <div class="form-field">
+    <button class="btn" type="submit">S'identifier</button>
+  </div>
       </form>
-        ) : ('')}
+        ) : (navigate('/admin'))}
 </>
     );
   }

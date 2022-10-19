@@ -16,6 +16,8 @@ function Footer() {
           <div className="email"><span id="e319785452"><a href="mailto:salindres.tennis@orange.fr">salindres.tennis@orange.fr</a></span></div>
           <div className="adresse">Complexe sportif du Frigoulou - 30340 Salindres</div>
           <div id="link_admin"><Link to="/login">Accès Admin</Link></div>
+          {/* <img src="https://counter9.stat.ovh/private/compteurdevisite.php?c=hw3jqazce8w75me6adsfhxlj3ank9e9p" border="0" title="compteur site sans pub" alt="compteur site sans pub"></img> */}
+          <img src="http://www.mon-compteur.fr/html_c02genv2-70845-5" border="0" />
 
         </div>
         <div className="gmap">

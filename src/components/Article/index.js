@@ -15,6 +15,7 @@ function Article() {
   const [articlePrev, setArticlePrev] = useState([]);
   const [articleNext, setArticleNext] = useState([]);
   const [vues, setVues] = useState('');
+  const [ourText, setOurText] = useState("")
 
   const { id } = useParams();
 
@@ -40,6 +41,20 @@ function Article() {
       behavior: 'smooth',
     });
   }, [id]);
+  
+
+  const speechHandler = (msg) => {
+    msg.text = ourText
+    window.speechSynthesis.speak(msg)
+  }
+
+  // const msg = new SpeechSynthesisUtterance()
+  // msg.text = ReactHtmlParser(article.contenu)
+
+  // useEffect(() => {
+  //   window.speechSynthesis.speak(msg)
+  // }, [msg])
+
 
   return (
     <div className="article">
@@ -76,6 +91,8 @@ function Article() {
           }}
         />
       )}
+            {/* <button onClick={(e) => window.speechSynthesis.speak(msg)}>Lire l'article</button> */}
+
       <div className="container_art">
         <h1 className="title_section_article">{article.titre} {store.getState().Tennis.logged === true ? (<span><Link to={`/admin/modifyarticle/${article.id}/visu`}><MdModeEdit /></Link></span>) : ('')}</h1>
         <h5 className="bandeau_item_date">Le {article.date} <span> - <ImEye /> {vues}</span>  <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="blank" className="sharebox">

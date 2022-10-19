@@ -184,6 +184,15 @@ useEffect(() => {
     </div>
     <button type='submit'>Envoyer</button>
     </form>
+
+    <div>Template résultats</div>
+    <div className="contain_res">
+    <div className="equipe1">AS SALINDRES</div>
+    <div className="score1">4</div>
+    <div className="tiret">-</div>
+    <div className="score2">0</div>
+    <div className="equipe2">TC Rochefort</div>
+    </div>
     </div>
 
  );

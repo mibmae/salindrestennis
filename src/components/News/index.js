@@ -54,7 +54,7 @@ function News() {
             {news.map((e) => (
 
               <SwiperSlide key={generateUniqueKey(e)} autoFocus id={e.id}>
-                <Card style={{ width: '18rem', height: '18rem' }}>
+                <Card style={{ width: '18rem', height: '20rem' }}>
                   <Card.Img variant="top" className="card_img" src={e.image} />
                   <Card.Body>
                     <span className="card_date">{e.date}</span>
@@ -91,7 +91,7 @@ function News() {
             {news.map((e) => (
 
               <SwiperSlide key={generateUniqueKey(e)} autoFocus id={e.id}>
-                <Card style={{ width: '18rem', height: '18rem' }}>
+                <Card style={{ width: '18rem', height: '20rem' }}>
                   <Card.Img variant="top" className="card_img" src={e.image} />
                   <Card.Body>
                     <span className="card_date">{e.date} - {e.vue} vues</span>

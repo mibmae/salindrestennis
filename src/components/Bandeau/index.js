@@ -50,7 +50,6 @@ function Bandeau() {
     // console.log(document.hasFocus())
   }, []);
 
-  const backgroundUrl = 'https://www.tcbalma.fr/cache/images/9b45c9e41bb6f21a37e9a4a7fc394516_11fc6c4d0a8c4217e60d8e3bb7c5a8fa.jpg';
 
   return (
     <div className="bandeau">

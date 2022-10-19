@@ -23,6 +23,7 @@
         margin-left: 23rem;
         width: 150px;
         @media screen and (max-width: 500px) {
+          z-index: -1;
             margin: 0;
             width: 86px;
         }

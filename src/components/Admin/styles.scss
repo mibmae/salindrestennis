@@ -261,7 +261,11 @@ margin-top: 0.3rem;
 }
 
 .list_data {
+    // margin-top: 1rem;
     margin-top: 1rem;
+    overflow-y: auto;
+    height: 250px;
+ 
     @media screen and (max-width: 500px) {
         margin-top: -6rem;
         font-size: 13px;
@@ -750,4 +754,8 @@ body {
     @media screen and (max-width: 500px) {
         margin-left: 0!important;
     }
+}
+
+.img_b {
+    border-radius: 10px;
 }

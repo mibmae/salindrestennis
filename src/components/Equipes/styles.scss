@@ -388,3 +388,39 @@ padding: 0.5rem;
     datalist {
         display: none;
     }
+
+    .contain_res {
+        display: flex;
+    }
+
+    .equipe1 {
+        margin-right: 1rem;
+        border: 3px solid #F56A6A;
+        padding: 0.2rem;
+        border-radius: 0.3rem;
+        
+    }
+    .equipe2 {
+        margin-left: 1rem;
+        // margin-right: 1rem;
+        border: 3px solid #F56A6A;
+        padding: 0.2rem;
+        border-radius: 0.3rem;
+        font-weight: 700;
+    }
+    .score1 {
+        margin-top: 0.3rem;
+        margin-right: 0.5rem;
+        font-weight: 700;
+    }
+    .score2 {
+        margin-top: 0.3rem;
+        font-weight: 700;
+
+    }
+    .tiret {
+        margin-right: 1rem;
+        margin-left: 1rem;
+        margin-top: 0.3rem;
+
+    }

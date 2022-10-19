@@ -63,6 +63,7 @@ function Article() {
             <meta name="description" content={article.titre} />
             <meta property="og:title" content={article.titre} />
             <meta property="og:image" content={article.image} />
+            <meta property="og:url" content={document.location.href} />
       </Helmet>
       {/* <meta property="og:url" content="http://www.salindrestennis.fr/article.php?id=69" />
                                     <meta property="og:type"          content="website" />

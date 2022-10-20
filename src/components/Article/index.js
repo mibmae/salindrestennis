@@ -62,6 +62,7 @@ function Article() {
           <MetaTags>
             <title>{article.titre}</title>
             <meta property="og:description" content={article.titre} />
+            <meta property="og:type"  content="website" />
             <meta property="og:title" content={article.titre} />
             <meta property="og:image" content="https://www.salindrestennis.fr/images/onparledenous.jpg" />
             <meta property="og:url" content={document.location.href} />
@@ -97,8 +98,14 @@ function Article() {
 
       <div className="container_art">
         <h1 className="title_section_article">{article.titre} {store.getState().Tennis.logged === true ? (<span><Link to={`/admin/modifyarticle/${article.id}/visu`}><MdModeEdit /></Link></span>) : ('')}</h1>
-        <h5 className="bandeau_item_date">Le {article.date} <span> - <ImEye /> {vues}</span>  <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="blank" className="sharebox">
-            <span className="fb-icon" style={{backgroundImage: `url(${fb})`}}></span></a></h5>
+        <h5 className="bandeau_item_date">Le {article.date} <span> - <ImEye /> {vues}</span>  
+        <div class="fb-share-button" 
+data-href={window.location.href} 
+data-layout="button_count">
+</div>
+        {/* <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="blank" className="sharebox">
+            <span className="fb-icon" style={{backgroundImage: `url(${fb})`}}></span></a> */}
+          </h5>
         <div className="article_contenu"> {ReactHtmlParser(article.contenu)}</div>
         <div className="container_nav">
           <div>{articlePrev && (<Link to={`/article/${articlePrev.id}`}><AiOutlineArrowLeft /> {articlePrev.titre}</Link>)}</div>

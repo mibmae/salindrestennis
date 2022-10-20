@@ -61,7 +61,7 @@ function Article() {
     <div className="article">
           <MetaTags>
             <title>{article.titre}</title>
-            <meta name="description" content={article.titre} />
+            <meta property="og:description" content={article.titre} />
             <meta property="og:title" content={article.titre} />
             <meta property="og:image" content={article.image} />
             <meta property="og:url" content={document.location.href} />

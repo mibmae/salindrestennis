@@ -92,13 +92,14 @@ function News() {
 
               <SwiperSlide key={generateUniqueKey(e)} autoFocus id={e.id}>
                 <Card style={{ width: '18rem', height: '20rem' }}>
+                <figure>
                   <Card.Img variant="top" className="card_img" src={e.image} />
-                  <Card.Body>
-                    <span className="card_date">{e.date} - {e.vue} vues</span>
+                  <figcaption className="caption_news">
+                  <span className="card_date">{e.date} - {e.vue} vues</span>
                     <Card.Title className="card_title_perso">{e.titre}</Card.Title>
-                    <Card.Text>
-                      {/* {ReactHtmlParser(e.contenu).substr(1, 50)} */}
-                    </Card.Text>
+                    </figcaption></figure>
+                  <Card.Body>
+                
                     {/* <Button variant="primary"><Link to={`/article/${e.id}`}>Lire l'article</Link></Button> */}
                     <Link to={`/article/${e.id}`}><Button className="readmore">Lire l'article</Button></Link>
                   </Card.Body>

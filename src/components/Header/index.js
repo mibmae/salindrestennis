@@ -14,6 +14,7 @@ import '@szhsin/react-menu/dist/index.css';
 import '@szhsin/react-menu/dist/transitions/slide.css';
 import store from 'src/store';
 import { FaFacebookF } from 'react-icons/fa';
+import { IoMdLogOut } from 'react-icons/io';
 import { BsSnapchat, BsInstagram, BsSearch } from 'react-icons/bs';
 import { FcSearch } from 'react-icons/fc';
 import { BiDownArrow } from 'react-icons/bi';
@@ -103,6 +104,11 @@ function Header() {
     document.getElementById('inputSearch').value = ''
   }
 
+  const logout = () => {
+    localStorage.removeItem('token_Tennis');
+    window.location.href = '/';
+  }
+
 
   return (
     <div className="header">
@@ -138,7 +144,9 @@ function Header() {
           <Link to="/contacts"><MenuButton className="myButton">Contacts</MenuButton></Link>
           <Link to="/equipes"><MenuButton className="myButton">Equipes</MenuButton></Link>
           {store.getState().Tennis.logged === true ? (
-            <Link to="/admin"><MenuButton className="myButton">Admin</MenuButton></Link> /// changer LINK pour prendre le bouton entier
+            <><Link to="/admin"><MenuButton className="myButton">Admin</MenuButton></Link> 
+             <MenuButton className="myButton" onClick={logout}><IoMdLogOut /></MenuButton> 
+            </> /// changer LINK pour prendre le bouton entier
           ) : ('')}
           <div className="header_logos_container">
             <span className="socialfb"><a href="https://www.facebook.com/tc.salindres" target="_blank" rel="noreferrer"><FaFacebookF /></a></span>
@@ -199,7 +207,8 @@ function Header() {
                   <Link to="/equipes" onClick={() => closeMenu()}><MenuButton className="myButton_menu">Equipes</MenuButton></Link>
                 </span>
                 {store.getState().Tennis.logged === true ? (
-                 <Link to="/admin"> <MenuButton onClick={() => closeMenu()} className="myButton_menu">Admin</MenuButton></Link>
+                 <><Link to="/admin"> <MenuButton onClick={() => closeMenu()} className="myButton_menu">Admin</MenuButton></Link><MenuButton className="myButton_menu" onClick={logout}>Se déconnecter</MenuButton></> 
+
 
                 ) : ('') }
               </li>

@@ -31,7 +31,7 @@
 }
 
 .card-img-top {
-    height: 10rem!important;
+    height: 11rem!important;
 }
 
 .title_section_news {
@@ -97,4 +97,18 @@
         .swiper-button-next, .swiper-button-prev {
             top: 36%!important;
             color: #F56A6A!important;
+        }
+
+        .caption_news {
+            background-color: #000;
+            color: #fff;
+            font: italic small sans-serif;
+            text-align: center;
+            position: relative;
+            font-size: 1.4rem;
+            width: 100%;
+            left: 0rem;
+            top: 0rem;
+            border-radius: 0 0 5px 5px;
+            opacity: .7;
         }

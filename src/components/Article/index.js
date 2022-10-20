@@ -7,6 +7,7 @@ import { MdModeEdit } from 'react-icons/md';
 import store from 'src/store';
 import fb from 'src/assets/images/facebook-share-button-icon.svg';
 import Helmet from 'react-helmet';
+import MetaTags from 'react-meta-tags';
 
 import './styles.scss';
 
@@ -58,13 +59,13 @@ function Article() {
 
   return (
     <div className="article">
-      <Helmet>
-      <meta property="og:type"          content="website" />
+          <MetaTags>
+            <title>{article.titre}</title>
             <meta name="description" content={article.titre} />
             <meta property="og:title" content={article.titre} />
             <meta property="og:image" content={article.image} />
             <meta property="og:url" content={document.location.href} />
-      </Helmet>
+          </MetaTags>
       {/* <meta property="og:url" content="http://www.salindrestennis.fr/article.php?id=69" />
                                     <meta property="og:type"          content="website" />
                                     <meta property="og:title"         content="Fin du Tournois de double : Résultats et photos !" />

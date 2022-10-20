@@ -187,6 +187,51 @@ function Admin() {
     });
   };
 
+  const searchArticle = (e) => {
+      // setLoading(true);
+      if (e.length > 0) {
+      fetch(`http://localhost:3000/search/articles/${e}`, { 
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+    })
+    .then((response) => response.json())
+      .then((res) => { 
+        if (res.data.length > 0) { setArticlesList(res.data) } else {setArticlesList([])}
+      }
+        );
+    }
+    if (e.length === 0) {
+      getArticles();
+    }
+  }
+  const searchBandeau = (e) => {
+      // setLoading(true);
+      if (e.length > 0) {
+      fetch(`http://localhost:3000/search/bandeau/${e}`, { 
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+    })
+    .then((response) => response.json())
+      .then((res) => { 
+        if (res.data.length > 0) { setBandeauList(res.data) } else {setBandeauList([])}
+      }
+        );
+    }
+    if (e.length === 0) {
+      getArticles();
+    }
+  }
+
+  // const searchArticle = () => {
+
+  // }
+
   return (
   //    <div className="admin_container">
     <div className="admin">
@@ -202,6 +247,7 @@ function Admin() {
           <div className="menumobadmin">
           <MenuButton className="myButton_menu mobB" onClick={(e) => navigate('/admin/newbandeau')}>Ajouter un Item au bandeau</MenuButton>
           <MenuButton className="myButton_menu mobB" onClick={(e) => navigate('/admin/newarticle')}>Ajouter un article</MenuButton>
+          
           </div>
           <div className="admin">
             <div className="list_articles" id="list_articles">
@@ -209,14 +255,17 @@ function Admin() {
               <span className="but">
               {/* <Link to="/"><MenuButton className="myButton_menu" onClick={() => closeMenu()}>Accueil</MenuButton></Link> */}
                 <Link to="/admin/newbandeau"><MenuButton className="myButton_menu">Ajouter un Item</MenuButton></Link>
+                <input type="text" placeholder='Chercher un article' className="searchArt" onChange={(e) => searchBandeau(e.target.value)} />
+
               </span>
               <div className="list_data">
                 <div className="table-wrapper">
                   <Table striped hover>
                     {/* <table> */}
                     <tbody>
-                      {bandeauList.map((article) => (
+                      {bandeauList.length > 0 ? bandeauList.map((article) => (
                         <tr key={generateUniqueKey(article)}>
+                          <td width="20%"><span className="admin_date">{article.date}</span></td>
                           <td width="90%">{article.titre}</td>
                           <td width="10%">
                             <label className="switch">
@@ -231,7 +280,7 @@ function Admin() {
                           <td width="10%"> <Link to={`/admin/modifybandeau/${article.id}`}><MdModeEdit /></Link></td>
                           <td width="10%"> <FaTrash onClick={() => delBandeau(article.id)} /></td>
                         </tr>
-                      ))}
+                      )) : ('Aucun article')}
 
                     </tbody>
                     <tfoot />
@@ -247,14 +296,16 @@ function Admin() {
               <h2 className="admin_subtitle">Articles</h2>
               <span className="but">
               <Link to="/admin/newarticle"><MenuButton className="myButton_menu">Ajouter un article</MenuButton></Link>
+              <input type="text" placeholder='Chercher un article' className="searchArt" onChange={(e) => searchArticle(e.target.value)} />
               </span>
               <div className="list_data">
                 <div className="table-wrapper">
                   <Table striped hover>
                     {/* <table> */}
                     <tbody>
-                      {articlesList.map((article) => (
+                      {(articlesList.length > 0) ? articlesList.map((article) => (
                         <tr key={generateUniqueKey(article)}>
+                          <td width="20%"><span className="admin_date">{article.date}</span></td>
                           <td width="90%"><span>{article.titre}</span></td>
                           <td width="10%">
                             <label className="switch">
@@ -268,7 +319,7 @@ function Admin() {
                           <td width="10%"> <Link to={`/admin/modifyarticle/${article.id}`}><MdModeEdit onClick={() => modifyArticle(article.id)} /></Link></td>
                           <td width="10%"> <FaTrash onClick={() => delArticle(article.id)} /></td>
                         </tr>
-                      ))}
+                      )) : ('Aucun article')}
 
                     </tbody>
                     <tfoot />

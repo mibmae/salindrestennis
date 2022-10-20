@@ -30,7 +30,6 @@ import React, {
           'Content-Type': 'application/json',
         },
       }).then((response) => {
-        console.log(response)
         response.json()
         .then((res) => localStorage.setItem('token_Tennis', res.token))      
         if (response.status === 200) {
@@ -74,21 +73,6 @@ import React, {
         {store.getState().Tennis.logged === false ? (
 
         <form onSubmit={handleSubmit(ident)} ref={formLogin} id="login_form">
-        {/* <h1 className="white">Admin Login</h1>
-        <div className="inset">
-        <p>
-          <label className="label_login" htmlFor="email">EMAIL</label>
-          <input type="text" className="login_input" name="email" id="email" />
-        </p>
-        <p>
-          <label className="label_login" htmlFor="password">MOT DE PASSE</label>
-          <input type="password" className="login_input" name="password" id="password" autoComplete='true' />
-        </p>
-        
-        </div>
-        <p className="p-container">
-          <input type="submit" name="go" id="go" value="Log in" />
-        </p> */}
         <h1 className="col-2-small title_section_login">Admin Login</h1>
         <div class="form-field">
     <input type="text" name="email" id="email" placeholder="Nom d'utilisateur"/>

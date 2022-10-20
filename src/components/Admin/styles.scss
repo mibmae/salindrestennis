@@ -44,6 +44,13 @@
         }
     }
 
+    .admin_date {
+       
+        @media screen and (max-width: 500px) {
+            font-size: 8px;
+        }
+    }
+
 .admin_menu {
     position: absolute;
     display: flex;
@@ -269,6 +276,8 @@ margin-top: 0.3rem;
     @media screen and (max-width: 500px) {
         margin-top: -6rem;
         font-size: 13px;
+        height: 90%;
+        // overflow-y: hidden;
     }
 }
 
@@ -284,6 +293,13 @@ margin-top: 0.3rem;
     color: orange;
     border: 1px dashed orange;
     // width: 100%;
+}
+.searchArt {
+margin-top: 0rem!important;
+margin-left: 3rem;
+border: none;
+border-bottom: 1px solid grey;
+display: flex;
 }
 
 .pagination {

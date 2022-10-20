@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
+import MetaTags from 'react-meta-tags';
 
 import SwiperCore, {
   Navigation, Mousewheel, Keyboard, Autoplay, Pagination,
@@ -54,6 +55,7 @@ function Bandeau() {
   return (
     <div className="bandeau">
       {/* <div className="bandeau_text_title" data-aos="fade-up" data-aos-duration="3000">AS Salindres Tennis</div> */}
+
       <div className="swiper_container">
         <Swiper
           autoplay={{ delay: 4000 }}
